@@ -1,0 +1,137 @@
+body{
+    font-family: "Segoe UI";
+    font-size: 13px;
+    background: #bcbcbc;
+}
+
+.login_form{
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    margin-top: 100px;
+    padding: 10px;
+    border: 1px solid #1b4c0a;
+    background: #fff;
+}
+
+.login_form h1{
+    color: #229508;
+    margin-left: 10px;
+}
+
+.login_form form{
+    margin: auto;
+    margin-left: 65px;
+    margin-top: 40px;
+}
+
+.login_form input{
+    font-family: "Segoe UI";
+    font-size: 13px;
+}
+
+.login_form td{
+    height: 25px;
+}
+
+.login_form input[type="text"], input[type="password"]{
+    width: 200px;
+    height: 22px;
+}
+
+.login_form input[type="submit"]{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+
+.wrapper{
+    width: 1200px;
+    min-height: 550px;
+    overflow: hidden;
+    background: #fff;
+    margin: auto;
+}
+
+.wrapper .menu{
+    width: 1160px;
+    height: 30px;
+    background-color: #1b4c0a;
+    color: #fff;
+    padding: 10px 20px 10px 20px;
+}
+
+.wrapper .menu .items{
+    float: left;
+    width: 700px;
+    height: 15px;
+    padding: 5px 0px 10px 0px;
+}
+
+.menu .items a{
+    color: #fff;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.menu .items a:hover{
+    color: #c1c1c1;
+}
+
+.wrapper .menu .right{
+    width: 290px;
+    height: 15px;
+    padding: 5px 0px 10px 10px;
+    float: right;
+    border-left: 2px solid rgba(0, 125, 0, 0.87);
+}
+
+.menu .right .text{
+    margin-right: 20px;
+    float: left;
+}
+
+.menu .right a{
+    float: right;
+    color: #fff;
+}
+
+.wrapper .content{
+    width: 1160px;
+    min-height: 430px;
+    overflow: hidden;
+    padding-left: 25px;
+    padding-bottom: 25px;
+}
+
+.content h1{
+    color: #229508;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.content .left{
+    width: 880px;
+    min-height: 410px;
+    float: left;
+    padding: 10px 10px 10px 0px;
+}
+
+.content .right{
+    width: 245px;
+    min-height: 410px;
+    float: left;
+    padding: 10px;
+    background: #808080;
+    color: #fff;
+}
+
+.wrapper .footer{
+    width: 1160px;
+    height: 30px;
+    border-top: 1px solid black;
+    color: #000;
+    padding: 20px 20px 10px 20px;
+    text-align: center;
+}
