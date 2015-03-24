@@ -12,6 +12,7 @@ public class MainPageController extends AdminController {
 
     public MainPageController(){
         super();
+        //BANIK PICO;
     }
 
     @RequestMapping("/admin")
