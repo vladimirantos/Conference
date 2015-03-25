@@ -1,23 +1,19 @@
-package conference.controller;
+package conference.controller.administration;
 
-import conference.controller.AdminController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.io.File;
 
 @Controller
 public class MainPageController extends AdminController {
 
     public MainPageController(){
         super();
-        //BANIK PICO;
     }
 
     @RequestMapping("/admin")
     public ModelAndView index(){
-        title("Administrace");
+        title("Hlavní stránka");
         return getTemplate();
     }
 }

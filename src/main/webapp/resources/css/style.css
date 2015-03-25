@@ -111,6 +111,42 @@ body{
     margin-top: 10px;
 }
 
+.content form td{
+    height: 35px;
+}
+
+.content form input{
+    height: 22px;
+    margin-right: 20px;
+    padding-left: 5px;
+    font-family: "Segoe UI";
+}
+
+.content form input[type="submit"]{
+    width: 70px;
+    height: 25px;
+    cursor: pointer;
+    font-family: "Segoe UI";
+}
+
+.content form select{
+    height: 24px;
+    margin-right: 20px;
+    font-family: "Segoe UI";
+}
+
+.content form label{
+    margin-right: 10px;
+}
+
+.content form .input-long{
+    width: 350px
+}
+
+.content form .small-input{
+    width: 30px;
+}
+
 .content .left{
     width: 880px;
     min-height: 410px;
@@ -122,9 +158,14 @@ body{
     width: 245px;
     min-height: 410px;
     float: left;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background: #808080;
     color: #fff;
+}
+
+.content .right h2{
+    color: #fff;
+    margin-top: 5px;
 }
 
 .wrapper .footer{

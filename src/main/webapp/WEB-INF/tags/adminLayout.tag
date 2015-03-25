@@ -6,20 +6,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>${title} | ${applicationName}</title>
-    <link rel='stylesheet' href='<c:url value="resources/css/style.css"/>' />
+    <link rel='stylesheet' href='<c:url value="/resources/css/style.css"/>' />
 </head>
 <body>
 <div class="wrapper">
     <div class="menu">
         <div class="items">
-            <a href="">Domů</a>
-            <a href="">Vytvořit konferenci</a>
-            <a href="">Nahrávání článků</a>
-            <a href="">Vyhledávání</a>
+            <a href="/admin">Domů</a>
+            <a href="/conference/add">Přidat konferenci</a>
+            <a href="/404">Nahrávání článků</a>
+            <a href="/404">Vyhledávání</a>
         </div>
         <div class="right">
             <span class="text">Uživatel: admin</span>
-            <a href="">Odhlásit se</a>
+            <a href="/404">Odhlásit se</a>
         </div>
     </div>
     <div class="content">
