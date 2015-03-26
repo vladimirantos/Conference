@@ -11,7 +11,7 @@ public class MainPageController extends AdminController {
         super();
     }
 
-    @RequestMapping("/admin")
+    @RequestMapping("/homepage")
     public ModelAndView index(){
         title("Hlavní stránka");
         return getTemplate();

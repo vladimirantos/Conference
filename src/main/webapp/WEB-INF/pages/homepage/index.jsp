@@ -3,6 +3,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="m" %>
 
 <m:layout title="${title}">
+    Info enable: ${pokus}
     <c:if test="${not empty error}">
         <div class="error">${error}</div>
     </c:if>

@@ -4,8 +4,18 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <m:adminLayout title="${title}">
     <div class="left">
-        <form action="/conference/add" method="GET">
+        <form:form method="POST" commandName="conference">
             <table>
+                <tr>
+                    <td>Název: </td>
+                    <td><form:input path="name" /></td>
+
+                </tr>
+                <tr>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+            <!-- <table>
                 <tr>
                     <td><label for="name">Název</label></td>
                     <td colspan="4"><input type="text" name="name" id="name" maxlength="40" class="input-long" required></td>
@@ -27,8 +37,6 @@
                 <tr>
                     <td>Datum konání</td>
                     <td colspan="4">
-                        <input type="text" name="from" maxlength="2" class="small-input" placeholder="Od" required>
-                        <input type="text" name="to" maxlength="2" class="small-input" placeholder="Do">
                         <select name="month" required>
                                 <option disabled selected>Měsíc</option>
                                 <option value="1">Leden</option>
@@ -48,8 +56,8 @@
                 <tr>
                     <td colspan="4" align="center"><input type="submit" value="Uložit"></td>
                 </tr>
-            </table>
-        </form>
+            </table> -->
+        </form:form>
     </div>
     <div class="right">
         <h2>Seznam konferencí</h2>

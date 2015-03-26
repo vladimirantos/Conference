@@ -2,6 +2,7 @@ package conference.controller;
 
 import conference.configuration.Constants;
 import conference.exceptions.http.BadRequestException;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.net.URISyntaxException;
  */
 @Controller
 public abstract class BaseController {
+    protected static final Logger logger = Logger.getLogger(BaseController.class);
 
     private ModelAndView template;
 
@@ -39,6 +41,7 @@ public abstract class BaseController {
         this.module = module;
         template.addObject("debugMode", Constants.DEBUG_MODE);
         template.addObject("applicationName", Constants.APP_NAME);
+        template.addObject("module", module);
     }
 
     /**

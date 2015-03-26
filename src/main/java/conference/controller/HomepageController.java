@@ -1,5 +1,7 @@
 package conference.controller;
 
+import conference.configuration.Constants;
+import conference.exceptions.http.ForbiddenException;
 import conference.exceptions.http.NotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -15,12 +17,14 @@ public class HomepageController extends BaseController{
     public HomepageController(){
         title("Přihlášení do aplikace");
         setView("homepage");
+        addObject("pokus", logger.isInfoEnabled());
     }
 
     @RequestMapping("/")
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
-
+        logger.error("CHYBA PICO");
+        logger.info("INFO PICO");
         if (error != null) {
             addObject("error", "Invalid email or password!");
         }
@@ -30,5 +34,10 @@ public class HomepageController extends BaseController{
         }
 
         return setView("index").getTemplate();
+    }
+
+    @RequestMapping("/login/error")
+    public ModelAndView error(){
+        throw new ForbiddenException("Chybné přihlašovací údaje");
     }
 }

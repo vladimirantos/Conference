@@ -11,6 +11,7 @@ import java.io.File;
 
 @Controller
 @PreAuthorize("admin")
+@RequestMapping("/admin")
 public class AdminController extends BaseController {
     public AdminController(){
         super("administration");

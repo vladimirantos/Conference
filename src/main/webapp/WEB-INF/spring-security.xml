@@ -17,8 +17,8 @@
         <!--<access-denied-handler error-page="/403" /> -->
 
         <form-login login-page="/"
-                    default-target-url="/admin"
-                    authentication-failure-url="/login?error"
+                    default-target-url="/admin/homepage"
+                    authentication-failure-url="/login/error"
                     username-parameter="email"
                     password-parameter="password"
                     login-processing-url="/auth/login_check" />
@@ -28,15 +28,15 @@
 
     </http>
 
-    <beans:bean id="authenticationManager"
-                class="conference.model.AuthenticationManager" />
+ <!--   <beans:bean id="authenticationManager"
+                class="conference.model.AuthenticationManager" /> -->
 
     <!-- Select users and user_roles from database -->
     <authentication-manager>
         <authentication-provider>
         <user-service>
-            <user name="test" password="123456" authorities="user" />
-            <user name="admin" password="123456" authorities="admin" />
+            <user name="test" password="12345" authorities="user" />
+            <user name="admin" password="12345" authorities="admin" />
         </user-service>
         </authentication-provider>
     </authentication-manager>

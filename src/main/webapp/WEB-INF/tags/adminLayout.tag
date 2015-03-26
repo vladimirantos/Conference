@@ -12,8 +12,8 @@
 <div class="wrapper">
     <div class="menu">
         <div class="items">
-            <a href="/admin">Domů</a>
-            <a href="/conference/add">Přidat konferenci</a>
+            <a href="/admin/homepage">Domů</a>
+            <a href="/admin/conference/add">Přidat konferenci</a>
             <a href="/404">Nahrávání článků</a>
             <a href="/404">Vyhledávání</a>
         </div>
@@ -31,5 +31,6 @@
     </div>
 </div>
 
+<div style="color: red; font-size: 10px; float: right">Debug mode: ${debugMode}</div>
 </body>
 </html>

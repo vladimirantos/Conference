@@ -18,6 +18,7 @@
             background-color: #328ADC;
             color: #fff;
         }
+
         h2{
             font-size: 18px;
             color: royalblue;

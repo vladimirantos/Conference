@@ -40,11 +40,11 @@ public class ErrorController extends BaseController implements HandlerExceptionR
             if(Constants.DEBUG_MODE)
                 setView("debugHttpErrorPage");
             else
-                setView("error/"+ex.getCode());
+                setView(String.valueOf(ex.getCode()));
         }else {
             if (Constants.DEBUG_MODE)
-                setView("error/debugErrorPage");
-            else setView("error/error");
+                setView("debugErrorPage");
+            else setView("error");
         }
         return getTemplate();
     }
