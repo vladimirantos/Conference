@@ -61,32 +61,9 @@ public class ConferenceController extends AdminController{
             flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
             setView("add");
         } else {
-            //redirectAttributes.addFlashAttribute("messages", "ULOZENO PICO**");
-            //flashMessage("HOTOVO*/");
             flashMessage("Konference byla úspěšně přidána");
             return redirect("this");
         }
         return getTemplate();
     }
-
- /*   @RequestMapping(value="/conference/add", method=RequestMethod.POST)
-    public String onSubmit(Model model, Conference conference, BindingResult result){
-        model.addAttribute("conference", conference);
-        String returnVal = "success";
-        if(result.hasErrors()) {
-            returnVal = "form";
-        } else {
-            model.addAttribute("form", conference);
-        }
-        return returnVal;
-    }
-*/
-   /* @RequestMapping(value="/conference/add", method = RequestMethod.GET)
-    public ModelAndView add(@ModelAttribute("conference")Conference conference, BindingResult result){
-        logger.info("Jmeno: "+conference.getName());
-
-        title("Přidat konferenci");
-        setView("add");
-        return getTemplate();
-    }*/
 }

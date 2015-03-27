@@ -59,7 +59,6 @@ public abstract class BaseController {
         template.addObject("debugMode", Constants.DEBUG_MODE);
         template.addObject("applicationName", Constants.APP_NAME);
         template.addObject("module", module);
-       // redirectAttributes = new RedirectAttributesModelMap();
     }
 
     /**
