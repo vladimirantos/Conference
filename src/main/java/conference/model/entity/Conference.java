@@ -6,6 +6,8 @@ public class Conference {
     private String address;
     private String city;
     private String state;
+    private String month;
+    private String year;
 
     public String getName() {
         return name;
@@ -45,5 +47,21 @@ public class Conference {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

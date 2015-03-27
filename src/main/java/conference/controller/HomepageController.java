@@ -15,7 +15,6 @@ public class HomepageController extends BaseController{
     private static final Logger logger = Logger.getLogger(HomepageController.class);
 
     public HomepageController(){
-        title("Přihlášení do aplikace");
         setView("homepage");
         addObject("pokus", logger.isInfoEnabled());
     }
@@ -23,8 +22,7 @@ public class HomepageController extends BaseController{
     @RequestMapping("/")
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,
                               @RequestParam(value = "logout", required = false) String logout) {
-        logger.error("CHYBA PICO");
-        logger.info("INFO PICO");
+        title("Přihlášení do aplikace");
         if (error != null) {
             addObject("error", "Invalid email or password!");
         }

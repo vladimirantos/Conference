@@ -4,15 +4,49 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <m:adminLayout title="${title}">
     <div class="left">
+
         <form:form method="POST" commandName="conference">
             <table>
                 <tr>
                     <td>Název: </td>
-                    <td><form:input path="name" /></td>
-
+                    <td colspan="4"><form:input path="name" cssClass="input-long" maxlength="40" required="required"/></td>
+                    <td><span class="error"><form:errors path="name" /></span></td>
                 </tr>
                 <tr>
-                    <td><input type="submit"></td>
+                    <td><form:label path="theme">Téma: </form:label></td>
+                    <td colspan="4"><form:input path="theme" cssClass="input-long" maxlength="80" required="required"/></td>
+                    <td><span class="error"><form:errors path="theme"/></span></td>
+                </tr>
+                <tr>
+                    <td><form:label path="address">Adresa: </form:label></td>
+                    <td><form:input path="address" maxlength="40"/></td>
+
+                    <td><form:label path="city">Město: </form:label></td>
+                    <td><form:input path="city" maxlength="30" required="required"/></td>
+
+                    <td><form:label path="state">Stát: </form:label></td>
+                    <td><form:input path="state" maxlength="30" required="required"/></td>
+
+                    <td><div class="error"><form:errors path="city"/> <form:errors path="state"/></div></td>
+                </tr>
+
+                <tr>
+                    <td>Datum konání: </td>
+                    <td colspan="5">
+                        <form:select path="month" required="required">
+                            <form:option value="0">Měsíc</form:option>
+                            <form:options items="${months}" />
+                        </form:select>
+                        <form:input path="year" placeholder="Rok" required="required"/>
+                        <div class="error">
+                            <form:errors path="month" />
+                            <form:errors path="year" />
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" align="center"><input type="submit" value="Uložit"></td>
                 </tr>
             </table>
             <!-- <table>

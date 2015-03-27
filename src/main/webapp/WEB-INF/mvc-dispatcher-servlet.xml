@@ -17,8 +17,14 @@
             <property name="suffix" value=".jsp"/>
         </bean>
 
+        <bean id="messageSource"
+              class="org.springframework.context.support.ResourceBundleMessageSource">
+            <property name="basename" value="validation" />
+        </bean>
+        <bean id="conferenceFormValidator" class="conference.validator.ConferenceFormValidator" />
+
         <bean class="conference.controller.ErrorController"/>
         <mvc:resources mapping="/resources/**" location="/resources/" />
         <mvc:default-servlet-handler/>
-        <mvc:annotation-driven />
+        <mvc:annotation-driven/>
     </beans>

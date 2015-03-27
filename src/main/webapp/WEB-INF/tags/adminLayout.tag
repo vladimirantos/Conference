@@ -4,18 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>${title} | ${applicationName}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>${title}</title>
     <link rel='stylesheet' href='<c:url value="/resources/css/style.css"/>' />
 </head>
 <body>
 <div class="wrapper">
     <div class="menu">
         <div class="items">
-            <a href="/admin/homepage">Domů</a>
+            <a href="/admin/">Domů</a>
             <a href="/admin/conference/add">Přidat konferenci</a>
             <a href="/404">Nahrávání článků</a>
             <a href="/404">Vyhledávání</a>
+        </div>
+        <div class="message-box">
+            <span class="${mtype}">${messages}</span>
         </div>
         <div class="right">
             <span class="text">Uživatel: admin</span>
