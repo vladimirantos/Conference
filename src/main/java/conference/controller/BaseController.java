@@ -33,7 +33,7 @@ import java.util.Map;
  */
 @Controller
 public abstract class BaseController {
-    protected static final Logger logger = Logger.getLogger(BaseController.class);
+
     private ModelAndView template;
 
     private String view = null;

@@ -23,6 +23,11 @@
         </bean>
         <bean id="conferenceFormValidator" class="conference.validator.ConferenceFormValidator" />
 
+        <bean id="conference" class="conference.model.repository.ConferenceRepository">
+            <property name="dataSource" ref="dataSource" />
+        </bean>
+
+
         <bean class="conference.controller.ErrorController"/>
         <mvc:resources mapping="/resources/**" location="/resources/" />
         <mvc:default-servlet-handler/>

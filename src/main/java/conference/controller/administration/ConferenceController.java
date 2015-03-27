@@ -1,8 +1,10 @@
 package conference.controller.administration;
 
 import conference.configuration.FlashMessage;
+import conference.model.FileStorage;
 import conference.model.Log;
 import conference.model.entity.Conference;
+import conference.model.repository.ConferenceRepository;
 import conference.validator.ConferenceFormValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.*;
 
 @Controller
@@ -27,19 +30,22 @@ public class ConferenceController extends AdminController{
 
     private Map<Integer, String> months;
 
-    public ConferenceController(){
-        super();
-        this.months = new LinkedHashMap<Integer,String>();
-        String[] m = new String[]{"Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen",
-                "Září", "Říjen", "Listopad", "Prosinec"};
-        for(int i = 0; i < m.length; i++){
-            this.months.put(i+1, m[i]);
-        }
-    }
-
     @Autowired
     @Qualifier("conferenceFormValidator")
     private ConferenceFormValidator validator;
+
+    @Autowired
+    private ConferenceRepository conferenceRepository;
+
+    public ConferenceController() {
+        super();
+        this.months = new LinkedHashMap<Integer, String>();
+        String[] m = new String[]{"Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen",
+                "Září", "Říjen", "Listopad", "Prosinec"};
+        for (int i = 0; i < m.length; i++) {
+            this.months.put(i + 1, m[i]);
+        }
+    }
 
     @InitBinder
     private void initBinder(WebDataBinder binder) {
@@ -50,6 +56,7 @@ public class ConferenceController extends AdminController{
     public ModelAndView initForm(){
         title("Vytvoření konference");
         addObject("conference", new Conference()).addObject("months", months);
+        addObject("conferences", conferenceRepository.findAll());
         setView("add");
         return getTemplate();
     }
@@ -61,8 +68,14 @@ public class ConferenceController extends AdminController{
             flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
             setView("add");
         } else {
-            flashMessage("Konference byla úspěšně přidána");
-            return redirect("this");
+            try{
+                conferenceRepository.insert(conference);
+                conference.createDir();
+                flashMessage("Konference byla úspěšně přidána");
+                return redirect("this");
+            }catch(RuntimeException ex){
+                flashMessage(ex.getMessage(), FlashMessage.ERROR);
+            }
         }
         return getTemplate();
     }

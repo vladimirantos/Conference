@@ -1,4 +1,4 @@
-<%@tag description="Základní šablona stránky" pageEncoding="UTF-8"%>
+<%@tag description="Základní šablona stránky" pageEncoding="utf-8"%>
 <%@ attribute name="title" rtexprvalue="true" required="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>

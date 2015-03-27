@@ -29,10 +29,14 @@ public class ConferenceFormValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "month", "addconf.month");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "year", "addconf.year");
 
-        if(!conference.getYear().matches(YEAR_PATTERN))
+        if(conference.getYear() < 1990 || conference.getYear() > 2020)
+            errors.rejectValue("year", "addconf.yearNumber");
+        if(conference.getMonth() == 0)
+            errors.rejectValue("month", "addconf.month");
+        /*if(!conference.getYear().matches(YEAR_PATTERN))
             errors.rejectValue("year", "addconf.yearNumber");
 
         if(conference.getMonth().equals("0"))
-            errors.rejectValue("month", "addconf.month");
+            errors.rejectValue("month", "addconf.month");*/
     }
 }
