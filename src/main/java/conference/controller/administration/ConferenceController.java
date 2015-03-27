@@ -58,6 +58,7 @@ public class ConferenceController extends AdminController{
     public ModelAndView onSubmit(@Validated Conference conference, BindingResult result, RedirectAttributes redirectAttributes){
         addObject("conference", conference);
         if(result.hasErrors()){
+            flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
             setView("add");
         } else {
             //redirectAttributes.addFlashAttribute("messages", "ULOZENO PICO**");
