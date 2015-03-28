@@ -54,10 +54,12 @@ public class ConferenceController extends AdminController{
 
     @RequestMapping(value="/conference/add", method=RequestMethod.GET)
     public ModelAndView initForm(){
+        setView("add");
         title("Vytvoření konference");
         addObject("conference", new Conference()).addObject("months", months);
         addObject("conferences", conferenceRepository.findAll());
-        setView("add");
+
+        setSubMenu(createSubMenu());
         return getTemplate();
     }
 
@@ -78,5 +80,19 @@ public class ConferenceController extends AdminController{
             }
         }
         return getTemplate();
+    }
+
+    @RequestMapping("/conference/show-all")
+    public ModelAndView showAll(){
+        setView("show-all");
+        title("Výpis všech konferencí").addObject("conferences", conferenceRepository.findAll());
+        return getTemplate();
+    }
+
+    private HashMap<String, String> createSubMenu(){
+        HashMap<String, String> submenu = new HashMap<String, String>();
+        submenu.put("/admin/conference/edit", "Editovat");
+        submenu.put("/admin/conference/show-all", "Zobrazit vše");
+        return submenu;
     }
 }

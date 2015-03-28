@@ -5,7 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <m:adminLayout title="${title}">
     <div class="left">
-
         <form:form method="POST" commandName="conference">
             <table>
                 <tr>
@@ -53,14 +52,23 @@
         </form:form>
     </div>
     <div class="right">
-        <h2>Seznam konferencí</h2>
-        <c:forEach var="conference" items="${conferences}" end="3">
+        <h2>Nejnovější konference</h2>
+        <c:forEach var="conference" items="${conferences}" end="2">
                 <div class="item">
                     <h3>${conference.name}</h3>
                     <b>Téma: </b>${conference.theme}<br>
                     <b>Adresa konání: </b>${conference.address}, ${conference.city} ${conference.state}<br>
-                    <b>Datum konání: </b>${conference.month}/${conference.year} <br>
-                    <span style="font-size: 12px">Přidáno dne: <fmt:formatDate value="${conference.creationDate}" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+                    <b>Datum konání: </b>
+                    <c:choose>
+                        <c:when test="${conference.month <= 9}">
+                            0${ conference.month}/${conference.year} <br>
+                        </c:when>
+                        <c:otherwise>
+                            ${conference.month}/${conference.year} <br>
+                        </c:otherwise>
+                    </c:choose>
+                    <span style="font-size: 12px">Přidáno dne: <fmt:formatDate value="${conference.creationDate}" pattern="dd.MM.yyyy HH:mm:ss" /></span><br>
+                    <span style="font-size: 12px">Počet článků: </span>${conference.countArticles}
                 </div>
         </c:forEach>
     </div>

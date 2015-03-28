@@ -14,7 +14,7 @@
     <div class="menu">
         <div class="items">
             <a href="/admin/">Domů</a>
-            <a href="/admin/conference/add">Přidat konferenci</a>
+            <a href="/admin/conference/add">Správa konferencí</a>
             <a href="/404">Nahrávání článků</a>
             <a href="/404">Vyhledávání</a>
         </div>
@@ -28,6 +28,11 @@
     </div>
     <div class="content">
         <h1>${title}</h1>
+        <div class="submenu">
+            <c:forEach var="item" items="${submenu}" end="2">
+                <a href="${item.key}">${item.value}</a>
+            </c:forEach>
+        </div>
         <jsp:doBody/>
     </div>
     <div class="footer">

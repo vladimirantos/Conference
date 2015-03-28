@@ -30,6 +30,8 @@ import java.util.Map;
  * Základní kontroler od kterého musí dědit všechny kontrolery v aplikaci.
  * Šablony musí být ukládány do složky s názvem kontrolleru WEB-INF/pages/název kontroleru/šablona
  * Např.: pages/homepage/index
+ * Metoda setView instancuje ModelAndView a musí být volána jako první.
+ * TODO: všechna nastavení se budou provádět do zvláštních proměnnných a do ModelAndView se budou předávat až v getTemplate.
  */
 @Controller
 public abstract class BaseController {
@@ -49,16 +51,14 @@ public abstract class BaseController {
 
     }
 
+
+
     /**
      * Konstruktor se zadaným modulem. Modul je hlavní složka v šablonách (WEB-INF/pages)
      * @param module
      */
     public BaseController(String module){
-        template = new ModelAndView();
         this.module = module;
-        template.addObject("debugMode", Constants.DEBUG_MODE);
-        template.addObject("applicationName", Constants.APP_NAME);
-        template.addObject("module", module);
     }
 
     /**
@@ -122,6 +122,7 @@ public abstract class BaseController {
      */
     protected BaseController setView(String view){
         this.view = view;
+        template = new ModelAndView();
         String path;
         if(module != null)
             path = module+File.separator+getFolderName()+ File.separator+view;
@@ -135,6 +136,9 @@ public abstract class BaseController {
     protected ModelAndView getTemplate(){
         if(view == null)
             setView("default");
+        template.addObject("debugMode", Constants.DEBUG_MODE);
+        template.addObject("applicationName", Constants.APP_NAME);
+        template.addObject("module", module);
         return template;
     }
 
@@ -146,6 +150,16 @@ public abstract class BaseController {
      */
     public BaseController addObject(String name, Object object){
         template.addObject(name, object);
+        return this;
+    }
+
+    /**
+     * Vytvoří submenu se zadanými prvky. Klíče jsou odkazy a hodnoty jsou texty elementů odkazu.
+     * @param elements
+     * @return
+     */
+    protected BaseController setSubMenu(Map<String, String> elements){
+        addObject("submenu", elements);
         return this;
     }
 

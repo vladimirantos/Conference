@@ -33,8 +33,6 @@ public class ErrorController extends BaseController implements HandlerExceptionR
 
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
-        addObject("exception", e);
-        addObject("url", httpServletRequest.getRequestURL());
         if(e instanceof BadRequestException){
             BadRequestException ex = (BadRequestException)e;
             if(Constants.DEBUG_MODE)
@@ -46,6 +44,8 @@ public class ErrorController extends BaseController implements HandlerExceptionR
                 setView("debugErrorPage");
             else setView("error");
         }
+        addObject("exception", e);
+        addObject("url", httpServletRequest.getRequestURL());
         return getTemplate();
     }
 }

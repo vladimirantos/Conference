@@ -14,7 +14,7 @@ public class Log<E> {
         message(title, String.valueOf(message), sender);
     }
 
-    public static void message(String title, Integer message, Object sender){
+        public static void message(String title, Integer message, Object sender){
         message(title, String.valueOf(message), sender);
     }
 

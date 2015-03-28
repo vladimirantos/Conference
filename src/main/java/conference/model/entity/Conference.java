@@ -89,6 +89,10 @@ public class Conference {
         return new Date(id);
     }
 
+    public int getCountArticles(){
+        return FileStorage.countFiles(String.valueOf(id));
+    }
+
     @Override
     public String toString() {
         return name;
