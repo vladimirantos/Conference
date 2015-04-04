@@ -1,32 +1,23 @@
 package conference.controller.administration;
 
 import conference.configuration.FlashMessage;
-import conference.model.FileStorage;
-import conference.model.Log;
 import conference.model.entity.Conference;
 import conference.model.repository.ConferenceRepository;
 import conference.validator.ConferenceFormValidator;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.util.*;
 
 @Controller
-public class ConferenceController extends AdminController{
+public class ConferenceController extends AdminController {
 
     private Map<Integer, String> months;
 

@@ -4,8 +4,6 @@ import conference.configuration.Constants;
 import conference.configuration.FlashMessage;
 import conference.exceptions.http.BadRequestException;
 import conference.model.Log;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +12,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.net.URI;
@@ -50,8 +44,6 @@ public abstract class BaseController {
         this(null);
 
     }
-
-
 
     /**
      * Konstruktor se zadaným modulem. Modul je hlavní složka v šablonách (WEB-INF/pages)
@@ -104,11 +96,7 @@ public abstract class BaseController {
         return this;
     }
 
-    /**
-     * Nastaví nadpis stránky v tagu title.
-     * @param title
-     * @return
-     */
+
     protected BaseController title(String title){
         template.addObject("title", title);
         removeFlashMessage();
@@ -198,6 +186,7 @@ public abstract class BaseController {
         Log.message("Hlášení", message, this);
         return this;
     }
+
     /**
      * Přesměruje na zadanou adresu v aplikaci. Pokud je parametr nastaven na this, přesměruje se na aktuální adresu.
      * @param url

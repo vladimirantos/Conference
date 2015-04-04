@@ -20,6 +20,5 @@ public class ConferenceMapper implements RowMapper<Conference> {
         conference.setMonth(resultSet.getInt("month"));
         conference.setYear(resultSet.getInt("year"));
         return conference;
-
     }
 }

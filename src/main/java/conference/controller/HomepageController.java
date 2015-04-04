@@ -1,8 +1,6 @@
 package conference.controller;
 
-import conference.configuration.Constants;
 import conference.exceptions.http.ForbiddenException;
-import conference.exceptions.http.NotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomepageController extends BaseController{
+public class HomepageController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(HomepageController.class);
 
