@@ -7,7 +7,8 @@
 <m:adminLayout title="${title}">
     <div class="left">
         <h2>Vlož konfigurační soubor</h2>
-        <form:form method="get" action="/admin/article/upload?${_csrf.parameterName}=${_csrf.token}" commandName="article" modelAttribute="article" enctype="multipart/form-data">
+        <form:form method="POST" action="/admin/article/upload?${_csrf.parameterName}=${_csrf.token}"
+                   commandName="article" modelAttribute="article" enctype="multipart/form-data">
             <table>
                 <tr>
                         <td><form:label for="configFile" path="configFile">Konfigurační soubor: </form:label></td>

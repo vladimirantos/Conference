@@ -62,11 +62,12 @@ public class ArticleController extends AdminController{
     }
 
 
-    @RequestMapping(value="article/upload", method = RequestMethod.GET)
-    public ModelAndView onSubmit(@ModelAttribute("article") Article article, BindingResult result) {
+    @RequestMapping(value="article/upload", method = RequestMethod.POST)
+    public ModelAndView onSubmit(@ModelAttribute("article") Article article, BindingResult result) throws IOException {
         addObject("article", article);
         MultipartFile multipartFile = article.getConfigFile();
         log("AHOJ", multipartFile == null ? "null" : "neni nul");
+        article.getConfigFile().transferTo(new File("C:\\Users\\Vladimír\\Documents\\" + article.getConfigFile().getOriginalFilename()));
         for(ObjectError e : result.getAllErrors())
             Log.message("ERROR", e.toString(), this);
         if(result.hasErrors()){
