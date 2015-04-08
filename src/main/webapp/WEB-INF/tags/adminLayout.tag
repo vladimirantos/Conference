@@ -15,7 +15,7 @@
         <div class="items">
             <a href="/admin/">Domů</a>
             <a href="/admin/conference/add">Správa konferencí</a>
-            <a href="/404">Nahrávání článků</a>
+            <a href="/admin/article/add">Nahrávání článků</a>
             <a href="/404">Vyhledávání</a>
         </div>
         <div class="message-box">

@@ -25,6 +25,10 @@ public class FileStorage {
         return new File(ROOT + File.separator + name).list().length;
     }
 
+    public static final String getPath(long id){
+        return ROOT + File.separator + id + File.separator;
+    }
+
     /*public static final List<String> getFiles(String dir){
 
     }

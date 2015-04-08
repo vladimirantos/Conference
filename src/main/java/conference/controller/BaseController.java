@@ -42,7 +42,6 @@ public abstract class BaseController {
 
     public BaseController(){
         this(null);
-
     }
 
     /**
@@ -98,6 +97,8 @@ public abstract class BaseController {
 
 
     protected BaseController title(String title){
+        if(template == null)
+            template = new ModelAndView();
         template.addObject("title", title);
         removeFlashMessage();
         return this;
@@ -137,6 +138,8 @@ public abstract class BaseController {
      * @return
      */
     public BaseController addObject(String name, Object object){
+        if(template == null)
+            template = new ModelAndView();
         template.addObject(name, object);
         return this;
     }
@@ -174,16 +177,6 @@ public abstract class BaseController {
 
     public BaseController log(Map messages){
         log("Hlášení", messages);
-        return this;
-    }
-
-    public BaseController log(String title, Boolean message){
-        Log.message(title, message, this);
-        return this;
-    }
-
-    public BaseController log(Boolean message){
-        Log.message("Hlášení", message, this);
         return this;
     }
 

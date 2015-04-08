@@ -49,7 +49,6 @@ public class ConferenceController extends AdminController {
         title("Vytvoření konference");
         addObject("conference", new Conference()).addObject("months", months);
         addObject("conferences", conferenceRepository.findAll());
-
         setSubMenu(createSubMenu());
         return getTemplate();
     }

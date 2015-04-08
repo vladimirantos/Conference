@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <!-- enable use-expressions -->
-   <!-- <http auto-config="false" use-expressions="true"> -->
+    <!-- <http auto-config="false" use-expressions="true"> -->
     <http use-expressions="true">
         <headers>
             <cache-control />
@@ -28,16 +28,16 @@
 
     </http>
 
- <!--   <beans:bean id="authenticationManager"
-                class="conference.model.AuthenticationManager" /> -->
+    <!--   <beans:bean id="authenticationManager"
+                   class="conference.model.AuthenticationManager" /> -->
 
     <!-- Select users and user_roles from database -->
     <authentication-manager>
         <authentication-provider>
-        <user-service>
-            <user name="test" password="12345" authorities="user" />
-            <user name="admin" password="12345" authorities="admin" />
-        </user-service>
+            <user-service>
+                <user name="test" password="12345" authorities="user" />
+                <user name="admin" password="12345" authorities="admin" />
+            </user-service>
         </authentication-provider>
     </authentication-manager>
 

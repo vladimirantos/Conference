@@ -35,8 +35,8 @@
     </table>
     <table name="conferences" schema="" catalog="publications" type="TABLE">
       <column name="id_conference" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="name" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
-      <column name="theme" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="theme" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
       <column name="month" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="year" sqlType="YEAR" precision="0" scale="0" nullable="false" jdbcType="91"/>
       <column name="building" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
