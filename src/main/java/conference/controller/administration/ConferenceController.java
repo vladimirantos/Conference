@@ -55,7 +55,7 @@ public class ConferenceController extends AdminController {
 
     @RequestMapping(value="/conference/add", method=RequestMethod.POST)
     public ModelAndView onSubmit(@Validated Conference conference, BindingResult result, RedirectAttributes redirectAttributes){
-        addObject("conference", conference);
+        addObject("conference", conference).addObject("months", months);
         if(result.hasErrors()){
             flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
             setView("add");

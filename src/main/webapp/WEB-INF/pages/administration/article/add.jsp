@@ -7,9 +7,19 @@
 <m:adminLayout title="${title}">
     <div class="left">
         <h2>Vlož konfigurační soubor</h2>
-        <form:form method="POST" action="/admin/article/upload?${_csrf.parameterName}=${_csrf.token}"
+        <a href="/admin/article/test">TEST</a>
+            <form:form method="POST" action="/admin/article/upload?${_csrf.parameterName}=${_csrf.token}"
                    commandName="article" modelAttribute="article" enctype="multipart/form-data">
             <table>
+                <tr>
+                    <td><form:label path="conference">Konference: </form:label></td>
+                    <td>
+                        <form:select path="conference">
+                            <form:option value="0">Vyber konferenci</form:option>
+                            <form:options items="${conf}" />
+                        </form:select>
+                    </td>
+                </tr>
                 <tr>
                         <td><form:label for="configFile" path="configFile">Konfigurační soubor: </form:label></td>
                         <td><input id="configFile" name="configFile" type="file" value=""/></td>

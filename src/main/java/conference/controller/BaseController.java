@@ -63,6 +63,7 @@ public abstract class BaseController {
         request.getSession().setAttribute("messages", message);
         request.getSession().setAttribute("mtype", messageType);
         request.getSession().setAttribute("count", 1);
+        log(request.getSession().getAttribute("messages").toString());
         return this;
     }
 
@@ -123,6 +124,7 @@ public abstract class BaseController {
     protected String getView(){ return template.getViewName(); }
 
     protected ModelAndView getTemplate(){
+        log("VIEW", view);
         if(view == null)
             setView("default");
         template.addObject("debugMode", Constants.DEBUG_MODE);

@@ -55,39 +55,45 @@ public class ArticleController extends AdminController{
     @RequestMapping(value="/article/add", method = RequestMethod.GET)
     public ModelAndView initForm() {
         setView("add");
-        title("Vkládání článků")
-                .addObject("article", new Article())
-                .addObject("conf", getConferences());
+       // title("Vkládání článků");
+        addObject("article", new Article()).addObject("conf", getConferences());
+        flashMessage("Konference byla úspěšně přidána");
         return getTemplate();
     }
 
-
     @RequestMapping(value="article/upload", method = RequestMethod.POST)
-    public ModelAndView onSubmit(@ModelAttribute("article") Article article, BindingResult result) throws IOException {
+    public ModelAndView onSubmit(@ModelAttribute("article") Article article, BindingResult result, RedirectAttributes redirectAttributes)
+            throws IOException {
         addObject("article", article);
-        MultipartFile multipartFile = article.getConfigFile();
-        log("AHOJ", multipartFile == null ? "null" : "neni nul");
-        article.getConfigFile().transferTo(new File("C:\\Users\\Vladimír\\Documents\\" + article.getConfigFile().getOriginalFilename()));
-        for(ObjectError e : result.getAllErrors())
-            Log.message("ERROR", e.toString(), this);
+        flashMessage("AHOJ");
         if(result.hasErrors()){
-            setView("add");
             flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
+            //setView("add");
         } else {
             try{
+                articleManager.setIdConference(article.getConference()).
+                        uploadConfigFile(article.getConfigFile());
                 flashMessage("Konference byla úspěšně přidána");
-                return redirect("/admin/article/add");
+               // return redirect("/admin/article/add");
             }catch(RuntimeException ex){
-                flashMessage(ex.getMessage(), FlashMessage.ERROR);
+                log("VÝJIMKA", ex.getMessage());
+                flashMessage("Došlo k chybě při ukládání článku", FlashMessage.ERROR);
             }
         }
+        return getTemplate();
+    }
+
+    @RequestMapping("/article/test")
+    public ModelAndView test(){
+        title("POKUS");
+        flashMessage("BANIK PICO");
         return getTemplate();
     }
 
     /**
      * @return Vrací seznam konferencích v kolekci typu id_konference - název
      */
-    public Map<Long, String> getConferences(){
+    private Map<Long, String> getConferences(){
         List<Conference> conferences = conferenceRepository.findAll();
         Map<Long, String> result = new LinkedHashMap<Long, String>();
         for(Conference c : conferences)
