@@ -12,7 +12,7 @@ create table conferences(
 );
 
 CREATE TABLE articles(
-  id_article BIGINT(11) not null,
+  id_article int primary key auto_increment,
   conference BIGINT(11) NOT NULL,
   name VARCHAR(150) not null,
   abstract text not null,
@@ -24,7 +24,7 @@ CREATE TABLE articles(
 );
 
 CREATE TABLE authors(
-  id_author BIGINT(11) not null,
+  id_author int PRIMARY KEY auto_increment,
   name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   institut VARCHAR(50) DEFAULT null,
@@ -36,15 +36,15 @@ CREATE TABLE authors(
 );
 
 CREATE TABLE authors_articles(
-  author BIGINT(11) NOT NULL,
-  article BIGINT(11) NOT NULL,
-  CONSTRAINT pk_author_article PRIMARY KEY (author, article),
-  CONSTRAINT fk_author FOREIGN KEY (author) REFERENCES authors(id_author) ON DELETE  CASCADE,
-  CONSTRAINT fk_article FOREIGN KEY (article) REFERENCES articles(id_article) ON DELETE CASCADE
+  id_author int NOT NULL,
+  id_article int NOT NULL,
+  CONSTRAINT pk_author_article PRIMARY KEY (id_author, id_article),
+  CONSTRAINT fk_author FOREIGN KEY (id_author) REFERENCES authors(id_author) ON DELETE  CASCADE,
+  CONSTRAINT fk_article FOREIGN KEY (id_article) REFERENCES articles(id_article) ON DELETE CASCADE
 );
 
 CREATE TABLE users(
-  id_user int(5) NOT NULL,
+  id_user int(5) PRIMARY KEY auto_increment,
   name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
   email VARCHAR(80) NOT NULL,

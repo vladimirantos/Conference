@@ -89,7 +89,7 @@ public class Conference {
         return new Date(id);
     }
 
-    public int getCountArticles(){
+    public int getCountArticles(){//ahoj
         return FileStorage.countFiles(String.valueOf(id));
     }
 
