@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="conference.model.entity.Users" table="users" schema="" catalog="publications">
+        <id name="idUser">
+            <column name="id_user" sql-type="int" not-null="true"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="lastName">
+            <column name="last_name" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar" length="80" not-null="true"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar" length="60" not-null="true"/>
+        </property>
+        <property name="registrationDate">
+            <column name="registration_date" sql-type="timestamp" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

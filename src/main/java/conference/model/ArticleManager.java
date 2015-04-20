@@ -38,23 +38,22 @@ public class ArticleManager{
     }
 
     public void saveConfigFile() {
+        ArticleUploader articleUploader = createUploader();
         MultipartFile multipartFile = article.getConfigFile();
         try {
-            uploadConfigFile(multipartFile)
-                    .insertToDatabase(multipartFile.getOriginalFilename());
+            articleUploader.uploadFile(multipartFile);
+            insertToDatabase(multipartFile.getOriginalFilename());
         } catch (IOException e) {
             throw new FileNotUploadedException("Nepodařilo se nahrát soubor");
         }
     }
 
-    private ArticleManager uploadConfigFile(MultipartFile file) throws IOException {
-        String fileName = file.getOriginalFilename();
-        if (!"".equalsIgnoreCase(fileName)){
-            File f = new File(FileStorage.getPath(article.getConference()) + fileName);
-            file.transferTo(f);
+    public void saveArticles(){
+        try {
+            createUploader().multipleUpload(article.getArticles());
+        } catch (IOException e) {
+            throw new FileNotUploadedException("Nepodařilo se nahrát soubory");
         }
-
-        return this;
     }
 
     private void insertToDatabase(String fileName){
@@ -69,6 +68,10 @@ public class ArticleManager{
         } catch (SAXException e) {
             throw new ApplicationException("Soubor má nepovolený formát.");
         }
+    }
+
+    private ArticleUploader createUploader(){
+        return new ArticleUploader(FileStorage.getPath(article.getConference()));
     }
 }
 
@@ -123,5 +126,27 @@ class ArticleXmlParser{
             authors.add(author);
         }
         return authors;
+    }
+}
+
+class ArticleUploader{
+
+    private String dirPath;
+
+    public ArticleUploader(String dirPath){
+        this.dirPath = dirPath;
+    }
+
+    public void uploadFile(MultipartFile multipartFile) throws IOException {
+        String fileName = multipartFile.getOriginalFilename();
+        if (!"".equalsIgnoreCase(fileName)){
+            File f = new File(dirPath + fileName);
+            multipartFile.transferTo(f);
+        }
+    }
+
+    public void multipleUpload(List<MultipartFile> multipartFiles) throws IOException {
+        for(MultipartFile multipartFile : multipartFiles)
+            uploadFile(multipartFile);
     }
 }

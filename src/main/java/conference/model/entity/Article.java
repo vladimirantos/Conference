@@ -10,6 +10,8 @@ public class Article {
 
     private Long conference;
 
+    private List<MultipartFile> articles;
+
     public MultipartFile getConfigFile() {
         return configFile;
     }
@@ -24,5 +26,13 @@ public class Article {
 
     public void setConference(Long conference) {
         this.conference = conference;
+    }
+
+    public List<MultipartFile> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<MultipartFile> articles) {
+        this.articles = articles;
     }
 }

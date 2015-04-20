@@ -25,6 +25,7 @@
         </bean>
 
         <bean id="conferenceFormValidator" class="conference.validator.ConferenceFormValidator" />
+        <bean id="articleValidator" class="conference.validator.ArticleValidator" />
 
         <bean id="conference" class="conference.model.repository.ConferenceRepository">
             <property name="dataSource" ref="dataSource" />

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="conference.model.entity.Articles" table="articles" schema="" catalog="publications">
+        <id name="idArticle">
+            <column name="id_article" sql-type="int" not-null="true"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar" length="150" not-null="true"/>
+        </property>
+        <property name="abstrct">
+            <column name="abstract" sql-type="text" length="65535" not-null="true"/>
+        </property>
+        <property name="numberPages">
+            <column name="number_pages" sql-type="tinyint" not-null="true"/>
+        </property>
+        <property name="insertionDate">
+            <column name="insertion_date" sql-type="timestamp" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

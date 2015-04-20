@@ -6,7 +6,9 @@ import conference.model.ArticleManager;
 import conference.model.entity.Article;
 import conference.model.entity.Conference;
 import conference.model.repository.ConferenceRepository;
+import conference.validator.ArticleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -32,6 +34,10 @@ public class ArticleController extends AdminController {
     @Autowired
     private ArticleManager articleManager;
 
+    @Autowired
+    @Qualifier("articleValidator")
+    private ArticleValidator articleValidator;
+
     public ArticleController() {
         super();
     }
@@ -39,6 +45,7 @@ public class ArticleController extends AdminController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringMultipartFileEditor());
+        binder.setValidator(articleValidator);
     }
 
     @RequestMapping(value = "/article/add", method = RequestMethod.GET)
@@ -55,15 +62,40 @@ public class ArticleController extends AdminController {
         addObject("article", article);
         if (result.hasErrors()) {
             setView("add");
+            flashMessage("Došlo k chybě při odesílání formuláře", FlashMessage.ERROR);
         } else {
             try {
                 articleManager.setArticle(article).saveConfigFile();
                 flashMessage("Konfigurační soubor byl úspěšně přidán");
             }catch (ApplicationException ex){
+                log("VÝJIMKA", ex.getMessage());
                 flashMessage(ex.getMessage(), FlashMessage.ERROR);
             }catch (RuntimeException ex) {
                 log("VÝJIMKA", ex.getMessage());
                 flashMessage("Chyba při ukládání konfiguračního souboru", FlashMessage.ERROR);
+            }
+            return redirect("/admin/article/add");
+        }
+        return getTemplate();
+    }
+
+    @RequestMapping(value = "article/uploadArticles", method = RequestMethod.POST)
+    public ModelAndView onSubmitUploadArticles(@ModelAttribute("article") Article article, BindingResult result, RedirectAttributes redirectAttributes)
+            throws IOException {
+        addObject("article", article);
+        if (result.hasErrors()) {
+            setView("add");
+            flashMessage("Došlo k chybě při odesílání formuláře", FlashMessage.ERROR);
+        } else {
+            try {
+                articleManager.setArticle(article).saveArticles();
+                flashMessage("Bylo nahráno celkem "+article.getArticles().size() + " souborů");
+            }catch (ApplicationException ex){
+                log("VÝJIMKA", ex.getMessage());
+                flashMessage(ex.getMessage(), FlashMessage.ERROR);
+            }catch (RuntimeException ex) {
+                log("VÝJIMKA", ex.getMessage());
+                flashMessage("Chyba při ukládání článků", FlashMessage.ERROR);
             }
             return redirect("/admin/article/add");
         }
