@@ -95,7 +95,7 @@ public class Conference {
 
     @Override
     public String toString() {
-        return name;
+        return Character.toString(name.charAt(0)).toUpperCase()+name.substring(1);
     }
 
     /**

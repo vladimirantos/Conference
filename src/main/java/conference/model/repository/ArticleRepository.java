@@ -6,6 +6,8 @@ import conference.model.Log;
 import conference.model.entity.Article;
 import conference.model.entity.Author;
 import conference.model.entity.DbArticle;
+import conference.model.mapper.ArticleMapper;
+import conference.model.mapper.AuthorMapper;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,7 +27,7 @@ public class ArticleRepository {
     }
 
     public void insertAll(final List<DbArticle> articles) {
-        String sql = "INSERT INTO articles(conference, name, abstract, number_pages) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO articles(conference, name, abstract, number_pages, file_name) VALUES(?,?,?,?,?)";
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
@@ -35,6 +37,7 @@ public class ArticleRepository {
                 ps.setString(2, article.getName());
                 ps.setString(3, article.getAbstrct());
                 ps.setInt(4, article.getNumberPages());
+                ps.setString(5, article.getFileName());
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -54,6 +57,20 @@ public class ArticleRepository {
                 }
             }
         }
+    }
+
+    public List<DbArticle> fullTextSearch(String word){
+        String sql = "SELECT DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date, " +
+                "c.name as conference, c.theme, c.month, c.year, c.building, " +
+                "c.city, c.state, file_name, MATCH(a.name, a.abstract)AGAINST('" + word + "') AS score FROM articles as a " +
+                "join conferences as c on c.id_conference = a.conference " +
+                "WHERE MATCH(a.name, a.abstract) AGAINST('" + word + "') ORDER BY score DESC";
+        return template.query(sql, new ArticleMapper().setArticleRepository(this));
+    }
+
+    public List<Author> getAuthors(long idArticle) {
+        String sql = "SELECT id_article, name, last_name, institut, university, city, state FROM article_authors WHERE id_article = ?";
+        return template.query(sql, new Object[]{idArticle}, new AuthorMapper());
     }
 
     private void insertAuthors(List<Author> authors, int id_article) {
@@ -92,4 +109,5 @@ public class ArticleRepository {
             }
         }
     }
+
 }

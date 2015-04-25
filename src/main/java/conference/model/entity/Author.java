@@ -3,7 +3,7 @@ package conference.model.entity;
 import java.util.Date;
 
 public class Author {
-    private Long id;
+    private Long idArticle;
 
     private String name;
 
@@ -17,12 +17,12 @@ public class Author {
 
     private String state;
 
-    public Long getId(){
-        return id;
+    public Long getIdArticle(){
+        return idArticle;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdArticle(long id) {
+        this.idArticle = id;
     }
 
     public String getName() {

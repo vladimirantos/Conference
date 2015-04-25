@@ -130,6 +130,11 @@ body{
     color: #fff;
 }
 
+.menu .right .logout{
+    text-align: right;
+    float: right;
+}
+
 .wrapper .content{
     width: 1160px;
     min-height: 430px;
@@ -290,4 +295,39 @@ table .icontd img{
     color: #000;
     padding: 20px 20px 10px 20px;
     text-align: center;
+}
+
+.content .searchPanel{
+    margin: auto;
+    padding-left: 100px;
+    width: 600px;
+    margin-top: 150px;
+}
+
+.content .searchPanel input{
+    margin-right: 0px;
+    height: 30px
+}
+
+.content .search-results{
+    width: 1100px;
+    margin: auto;
+}
+
+.search-results .item{
+    width: 1080px;
+    min-height: 50px;
+    padding: 10px;
+    display: block;
+    background: rgba(0, 0, 0, 0.08);
+    margin-bottom: 10px;
+}
+
+.search-results .item h2{
+    font-size: 16px;
+    margin: 0px;
+}
+
+.search-results .item:first-of-type{
+    margin-top: 10px;
 }

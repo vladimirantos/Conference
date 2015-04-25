@@ -1,9 +1,12 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+<beans:beans
+        xmlns="http://www.springframework.org/schema/security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/security
+        	http://www.springframework.org/schema/security/spring-security-3.2.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
     <!-- enable use-expressions -->
     <!-- <http auto-config="false" use-expressions="true"> -->
@@ -12,21 +15,25 @@
             <cache-control />
         </headers>
 
-        <intercept-url pattern="/admin" access="hasRole('admin')" />
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/user" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+
         <logout logout-success-url="/" />
         <!--<access-denied-handler error-page="/403" /> -->
 
         <form-login login-page="/"
-                    default-target-url="/admin/homepage"
                     authentication-failure-url="/login/error"
                     username-parameter="email"
                     password-parameter="password"
-                    login-processing-url="/auth/login_check" />
+                    login-processing-url="/auth/login_check"
+                    authentication-success-handler-ref="authenticationSuccessHandler"/>
 
-        <logout logout-success-url="/j_spring_security_logout" delete-cookies="JSESSIONID" />
+        <logout logout-url="/logout" logout-success-url="/login" />
         <csrf />
 
     </http>
+    <beans:bean id="authenticationSuccessHandler"
+          class="conference.model.AuthenticationSuccessHandler" />
 
     <!--   <beans:bean id="authenticationManager"
                    class="conference.model.AuthenticationManager" /> -->
@@ -35,8 +42,8 @@
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="test" password="12345" authorities="user" />
-                <user name="admin" password="12345" authorities="admin" />
+                <user name="user" password="12345" authorities="ROLE_USER" />
+                <user name="admin" password="12345" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
     </authentication-manager>

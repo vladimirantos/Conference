@@ -10,7 +10,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-        <context:component-scan base-package="conference.controller"/>
+        <context:component-scan base-package="conference"/>
 
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
             <property name="prefix" value="/WEB-INF/pages/"/>
@@ -36,6 +36,8 @@
         </bean>
 
         <bean id="articleManager" class="conference.model.ArticleManager" />
+        <bean id="searchEngine" class="conference.model.SearchFactory" />
+
 
         <bean class="conference.controller.ErrorController"/>
         <mvc:resources mapping="/resources/**" location="/resources/" />

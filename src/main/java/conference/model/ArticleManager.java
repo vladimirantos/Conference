@@ -102,11 +102,13 @@ class ArticleXmlParser{
                 String title = element.getElementsByTagName("title").item(0).getTextContent();
                 String abstrct = element.getElementsByTagName("abstract").item(0).getTextContent();
                 List<Author> authors = parseAuthors(element.getElementsByTagName("author"));
+                String fileName = element.getElementsByTagName("file").item(0).getTextContent();
                 DbArticle dbArticle = new DbArticle();
                 dbArticle.setName(title);
                 dbArticle.setAbstrct(abstrct);
                 dbArticle.setAuthors(authors);
                 dbArticle.setConference(conference);
+                dbArticle.setFileName(fileName);
                 dbArticles.add(dbArticle);
             }
         }
@@ -115,7 +117,6 @@ class ArticleXmlParser{
 
     private List<Author> parseAuthors(NodeList nodes){
         List<Author> authors = new ArrayList<Author>();
-        Log.message("POCET AUTHOR", String.valueOf(nodes.getLength()), this);
         for(int i = 0; i < nodes.getLength(); i++){
             Author author = new Author();
             Node n = nodes.item(i);

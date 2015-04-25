@@ -8,6 +8,8 @@ public class DbArticle {
 
     private long conference;
 
+    private Conference conferenceObj;
+
     private List<Author> authors;
 
     private String name;
@@ -18,6 +20,7 @@ public class DbArticle {
 
     private Date insertionDate;
 
+    private String fileName;
 
     public DbArticle(){
 
@@ -59,7 +62,7 @@ public class DbArticle {
     }
 
     public String getName() {
-        return name;
+        return name.trim();
     }
 
     public void setName(String name) {
@@ -88,5 +91,30 @@ public class DbArticle {
 
     public void setInsertionDate(Date insertionDate) {
         this.insertionDate = insertionDate;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Conference getConferenceObj() {
+        return conferenceObj;
+    }
+
+    public void setConferenceObj(Conference conferenceObj) {
+        this.conferenceObj = conferenceObj;
+    }
+
+    public String authors(){
+        StringBuilder sb = new StringBuilder();
+        for(Author author : this.authors){
+            sb.append(author.getLastName().toUpperCase()+" "+author.getName()+", ");
+        }
+        String str = sb.toString();
+        return str.substring(0, str.length() - 2);
     }
 }

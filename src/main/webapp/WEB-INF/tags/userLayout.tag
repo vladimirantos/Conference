@@ -12,17 +12,25 @@
 <body>
 <div class="wrapper">
     <div class="menu">
+
         <div class="items">
-            <a href="/admin/">Domů</a>
-            <a href="/admin/conference/add">Správa konferencí</a>
-            <a href="/admin/article/add">Nahrávání článků</a>
-            <a href="/search?account=admin">Vyhledávání</a>
+            <c:choose>
+                <c:when test="${param.account == 'admin'}">
+                    <a href="/admin/">Domů</a>
+                    <a href="/admin/conference/add">Správa konferencí</a>
+                    <a href="/admin/article/add">Nahrávání článků</a>
+                    <a href="/search?account=admin">Vyhledávání</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/user/">Domů</a>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="message-box">
             <span class="${mtype}">${messages}</span>
         </div>
         <div class="right">
-            <span class="text">Uživatel: admin</span>
+            <span class="text">Uživatel: ${param.account == 'admin' ? 'admin' : 'user'}</span>
             <c:url var="logoutUrl" value="/j_spring_security_logout"/>
 
             <form action="${logoutUrl}" method="post">
@@ -34,7 +42,7 @@
         </div>
     </div>
     <div class="content">
-        <h1>${title}</h1>
+        <%--<h1>${title}</h1>--%>
         <div class="submenu">
             <c:forEach var="item" items="${submenu}" end="2">
                 <a href="${item.key}">${item.value}</a>

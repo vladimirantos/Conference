@@ -33,7 +33,6 @@ CREATE table article_authors(
   city VARCHAR(40) DEFAULT NULL,
   state VARCHAR(40) DEFAULT NULL,
   CONSTRAINT pk_article_authors PRIMARY KEY (id_article, name, last_name),
-  CONSTRAINT uk_article_author UNIQUE KEY (id_article, name, last_name),
   CONSTRAINT fk_article FOREIGN KEY (id_article) REFERENCES articles(id_article) on DELETE CASCADE
 );
 
@@ -46,6 +45,15 @@ CREATE TABLE users(
   registration_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   CONSTRAINT pk_user PRIMARY KEY (id_user)
 );
+
+ALTER TABLE conferences ADD FULLTEXT conference
+(name, theme, building, city, state);
+
+ALTER TABLE articles ADD FULLTEXT search_articles
+(name, abstract);
+
+ALTER TABLE article_authors ADD FULLTEXT authors
+(name, last_name, institut, university, city, state);
 
 create VIEW conference_articles as
   SELECT c.name as conference, a.name as article, CONCAT_WS(' ', aa.name, aa.last_name) as author
