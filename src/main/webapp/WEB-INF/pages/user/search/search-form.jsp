@@ -7,7 +7,7 @@
   <div class="searchPanel">
     <h2>Vyhledávání článků</h2>
       <form:form method="GET" commandName="searchAttributes" action="/search/results/">
-        <form:input path="text" cssClass="input-long" maxlength="150" required="required"/>
+        <form:input path="text" cssClass="input-long" maxlength="150" required="required" htmlEscape="true"/>
         <form:select path="type" required="required" >
           <form:options items="${searchTypes}"/>
           <%--<form:option value="title">Název článku</form:option>--%>

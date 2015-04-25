@@ -34,7 +34,7 @@ public class Conference {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = Character.toString(name.charAt(0)).toUpperCase()+name.substring(1);
     }
 
     public String getTheme() {
@@ -95,7 +95,7 @@ public class Conference {
 
     @Override
     public String toString() {
-        return Character.toString(name.charAt(0)).toUpperCase()+name.substring(1);
+        return name;
     }
 
     /**
@@ -103,5 +103,9 @@ public class Conference {
      */
     public void createDir(){
         FileStorage.createDir(String.valueOf(id));
+    }
+
+    public String monthString(){
+       return new SimpleDateFormat("MMMM").format(3);
     }
 }

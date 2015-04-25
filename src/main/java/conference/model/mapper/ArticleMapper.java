@@ -29,11 +29,14 @@ public class ArticleMapper implements RowMapper<DbArticle>{
         conference.setAddress(resultSet.getString("building"));
         conference.setCity(resultSet.getString("city"));
         conference.setState(resultSet.getString("state"));
+        conference.setMonth(resultSet.getInt("month"));
+        conference.setYear(resultSet.getInt("year"));
 
         DbArticle article = new DbArticle();
         article.setId(resultSet.getInt("id_article"));
         article.setName(resultSet.getString("title"));
         article.setAbstrct(resultSet.getString("abstract"));
+        article.setFileName(resultSet.getString("file_name"));
         article.setConferenceObj(conference);
         article.setAuthors(articleRepository.getAuthors(article.getId()));
         return article;

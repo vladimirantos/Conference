@@ -9,7 +9,7 @@
             <table>
                 <tr>
                     <td>Název: </td>
-                    <td colspan="4"><form:input path="name" cssClass="input-long" maxlength="100" required="required"/></td>
+                    <td colspan="4"><form:input path="name" cssClass="input-long" maxlength="100" required="required" htmlEscape="true" /></td>
                     <td><span class="error"><form:errors path="name" /></span></td>
                 </tr>
                 <tr>

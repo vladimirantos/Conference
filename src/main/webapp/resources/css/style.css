@@ -4,6 +4,10 @@ body{
     background: #bcbcbc;
 }
 
+a:visited{
+    color: #0066CC;
+}
+
 .login_form{
     width: 400px;
     height: 250px;
@@ -312,6 +316,7 @@ table .icontd img{
 .content .search-results{
     width: 1100px;
     margin: auto;
+    margin-top: 20px;
 }
 
 .search-results .item{
