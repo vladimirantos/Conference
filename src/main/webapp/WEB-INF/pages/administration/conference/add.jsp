@@ -14,18 +14,18 @@
                 </tr>
                 <tr>
                     <td><form:label path="theme">Téma: </form:label></td>
-                    <td colspan="4"><form:input path="theme" cssClass="input-long" maxlength="150" required="required"/></td>
+                    <td colspan="4"><form:input path="theme" cssClass="input-long" maxlength="150" htmlEscape="true"/></td>
                     <td><span class="error"><form:errors path="theme"/></span></td>
                 </tr>
                 <tr>
                     <td><form:label path="address">Adresa: </form:label></td>
-                    <td><form:input path="address" maxlength="40"/></td>
+                    <td><form:input path="address" maxlength="40" htmlEscape="true"/></td>
 
                     <td><form:label path="city">Město: </form:label></td>
-                    <td><form:input path="city" maxlength="30" required="required"/></td>
+                    <td><form:input path="city" maxlength="30" required="required" htmlEscape="true"/></td>
 
                     <td><form:label path="state">Stát: </form:label></td>
-                    <td><form:input path="state" maxlength="30" required="required"/></td>
+                    <td><form:input path="state" maxlength="30" required="required" htmlEscape="true"/></td>
 
                     <td><div class="error"><form:errors path="city"/> <form:errors path="state"/></div></td>
                 </tr>

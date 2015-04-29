@@ -1,13 +1,11 @@
 package conference.model.entity;
 
 public enum SearchTypes {
-    TITLE(1, "Nadpis", "articles"),
+    ARTICLE(1, "Článek", "articles"),
 
-    ABSTRACT(2, "Abstrakt", "articles"),
+    AUTHORS(2, "Autoři", "article_authors"),
 
-    AUTHORS(3, "Autoři", "article_authors"),
-
-    CONFERENCE(4, "Konference", "conferences");
+    CONFERENCE(3, "Konference", "conferences");
 
     private int id;
     private String name;

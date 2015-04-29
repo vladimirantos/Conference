@@ -1,13 +1,16 @@
 package conference.controller.administration;
 
 import conference.configuration.FlashMessage;
+import conference.model.StringEscapeEditor;
 import conference.model.entity.Conference;
 import conference.model.repository.ConferenceRepository;
+import conference.model.repository.IConferenceRepository;
 import conference.validator.ConferenceFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +29,7 @@ public class ConferenceController extends AdminController {
     private ConferenceFormValidator validator;
 
     @Autowired
-    private ConferenceRepository conferenceRepository;
+    private IConferenceRepository conferenceRepository;
 
     public ConferenceController() {
         super();
@@ -41,6 +44,8 @@ public class ConferenceController extends AdminController {
     @InitBinder
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
+        binder.registerCustomEditor(String.class,
+                new StringEscapeEditor(true, true, false));
     }
 
     @RequestMapping(value="/conference/add", method=RequestMethod.GET)
@@ -56,6 +61,8 @@ public class ConferenceController extends AdminController {
     @RequestMapping(value="/conference/add", method=RequestMethod.POST)
     public ModelAndView onSubmit(@Validated Conference conference, BindingResult result, RedirectAttributes redirectAttributes){
         addObject("conference", conference).addObject("months", months);
+        for(ObjectError e :result.getAllErrors())
+            log("chyba", e.toString());
         if(result.hasErrors()){
             flashMessage("Nepodařilo se odeslat formulář", FlashMessage.ERROR);
             setView("add");

@@ -6,6 +6,7 @@ import conference.model.ArticleManager;
 import conference.model.entity.Article;
 import conference.model.entity.Conference;
 import conference.model.repository.ConferenceRepository;
+import conference.model.repository.IConferenceRepository;
 import conference.validator.ArticleValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +30,7 @@ import java.util.Map;
 public class ArticleController extends AdminController {
 
     @Autowired
-    private ConferenceRepository conferenceRepository;
+    private IConferenceRepository conferenceRepository;
 
     @Autowired
     private ArticleManager articleManager;

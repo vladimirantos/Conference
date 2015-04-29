@@ -12,11 +12,13 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.awt.print.Pageable;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ArticleRepository {
+public class ArticleRepository implements IArticleRepository{
     private DataSource dataSource;
 
     private JdbcTemplate template;
@@ -46,7 +48,7 @@ public class ArticleRepository {
                 }
             }
         }catch(MySQLIntegrityConstraintViolationException ex){
-            //zachycen� v�jimky p�id�n� �l�nku se stejn�m n�zvem
+            //zachycení výjimky pri přidávání článku se stejným jménem
         }catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -65,6 +67,32 @@ public class ArticleRepository {
                 "c.city, c.state, file_name, MATCH(a.name, a.abstract)AGAINST('" + word + "') AS score FROM articles as a " +
                 "join conferences as c on c.id_conference = a.conference " +
                 "WHERE MATCH(a.name, a.abstract) AGAINST('" + word + "') ORDER BY score DESC";
+        return template.query(sql, new ArticleMapper().setArticleRepository(this));
+    }
+
+    public List<DbArticle> fullTextSearch(String word, Pageable pageable){
+        return new ArrayList<DbArticle>();
+    }
+
+    public List<DbArticle> getArticlesByAuthors(List<Author> authors){
+        String sql = "select DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date," +
+                "c.name as conference, c.theme, c.month, c.year, c.building," +
+                " c.city, c.state, file_name " +
+                "from article_authors as au " +
+                "join articles as a on a.id_article = au.id_article\n" +
+                "join conferences as c on c.id_conference = a.conference\n" +
+                "where ";
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for(Author a : authors){ //vytvoření podmínky where
+            sb.append((a.getName() != null ? "au.name='"+a.getName()+"' and " : "")+ //jméno není povinné
+                    "au.last_name='"+a.getLastName()+"' ");
+            if(i != authors.size() - 1)
+                sb.append("or ");
+            i++;
+        }
+        sql += sb.toString();
+        Log.message("SQL", sql, this);
         return template.query(sql, new ArticleMapper().setArticleRepository(this));
     }
 

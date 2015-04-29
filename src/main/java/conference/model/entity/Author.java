@@ -77,4 +77,18 @@ public class Author {
     public String toString() {
         return name + " " + lastName;
     }
+
+    /**
+     * Vytvoří objekt Author z řetězce příjmení jméno. Jméno nemusí být zadáno.
+     * @param name
+     * @return
+     */
+    public static Author fromString(String name){
+        String[] split = name.split(" ");
+        Author a = new Author();
+        a.setLastName(split[0]);
+        if(split.length > 1)
+            a.setName(split[1]);
+        return a;
+    }
 }

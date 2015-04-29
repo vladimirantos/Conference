@@ -328,6 +328,11 @@ table .icontd img{
     margin-bottom: 10px;
 }
 
+.search-results .item .title{
+    font-weight: bold;
+    font-style: italic;
+}
+
 .search-results .item h2{
     font-size: 16px;
     margin: 0px;
@@ -336,3 +341,21 @@ table .icontd img{
 .search-results .item:first-of-type{
     margin-top: 10px;
 }
+
+.search-results .pagingBar{
+    height: 30px;
+    padding-top: 5px;
+}
+
+.pagingBar a{
+    float: right;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.pagingBar a:hover{
+    color: #007fec;
+}
+
+
+.highlight { background-color: yellow }

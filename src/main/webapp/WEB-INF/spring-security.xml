@@ -15,8 +15,8 @@
             <cache-control />
         </headers>
 
-        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/user" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+        <intercept-url pattern="/admin" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
+        <intercept-url pattern="/user" access="hasRole('ROLE_USER')" />
 
         <logout logout-success-url="/" />
         <!--<access-denied-handler error-page="/403" /> -->

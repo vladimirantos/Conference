@@ -23,8 +23,6 @@ public class ConferenceFormValidator implements Validator{
     public void validate(Object target, Errors errors) {
         Conference conference = (Conference)target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "addconf.name");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "theme", "addconf.theme");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "addconf.city");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "state", "addconf.state");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "month", "addconf.month");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "year", "addconf.year");

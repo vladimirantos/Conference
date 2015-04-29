@@ -10,10 +10,6 @@
         <form:input path="text" cssClass="input-long" maxlength="150" required="required" htmlEscape="true"/>
         <form:select path="type" required="required" >
           <form:options items="${searchTypes}"/>
-          <%--<form:option value="title">Název článku</form:option>--%>
-          <%--<form:option value="abstract">Abstrakt</form:option>--%>
-          <%--<form:option value="authors">Autoři</form:option>--%>
-          <%--<form:option value="konference">Konference</form:option>--%>
         </form:select>
         <c:if test="${param.account != null}">
           <input type="hidden" name="account" value="${param.account}" />

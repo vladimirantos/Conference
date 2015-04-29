@@ -19,12 +19,10 @@ public class SearchAttributes {
     public SearchTypes getSearchType() {
         switch (tmpType) {
             case 1:
-                return SearchTypes.TITLE;
+                return SearchTypes.ARTICLE;
             case 2:
-                return SearchTypes.ABSTRACT;
-            case 3:
                 return SearchTypes.AUTHORS;
-            case 4:
+            case 3:
                 return SearchTypes.CONFERENCE;
         }
         throw new UnsupportedOperationException("Illegal type of search");

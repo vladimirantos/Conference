@@ -3,11 +3,14 @@ package conference.controller.user;
 import conference.configuration.Constants;
 import conference.configuration.FlashMessage;
 import conference.model.SearchFactory;
+import conference.model.StringEscapeEditor;
 import conference.model.entity.SearchAttributes;
 import conference.model.entity.SearchTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,6 +54,7 @@ public class SearchController extends UserController {
     public ModelAndView onSubmit(SearchAttributes searchAttributes, BindingResult result, RedirectAttributes redirectAttributes) {
         title("Výsledky vyhledávání").addObject("searchAttributes", searchAttributes).addObject("searchTypes", getSearchTypes());
         List data = searchFactory.setAttributes(searchAttributes).search();
+        //log("xxx", searchAttributes.getType());
         if (data.size() == 0)
             flashMessage("Nenalezeny žádné záznamy", FlashMessage.INFO);
         else flashMessage("Nalezeno celkem " + data.size() + " záznamů");

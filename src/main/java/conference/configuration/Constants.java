@@ -14,4 +14,6 @@ public class Constants {
     public static final String DATETIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
     public static final int MAX_ID = 1000000;
+
+    public static final int ITEMS_PER_PAGE = 10;
 }

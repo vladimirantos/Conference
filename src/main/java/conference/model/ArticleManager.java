@@ -6,6 +6,7 @@ import conference.model.entity.Article;
 import conference.model.entity.Author;
 import conference.model.entity.DbArticle;
 import conference.model.repository.ArticleRepository;
+import conference.model.repository.IArticleRepository;
 import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +31,7 @@ public class ArticleManager{
     private Article article;
 
     @Autowired
-    private ArticleRepository articleRepository;
+    private IArticleRepository articleRepository;
 
     public ArticleManager setArticle(Article article){
         this.article = article;

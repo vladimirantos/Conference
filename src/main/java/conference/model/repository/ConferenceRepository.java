@@ -1,5 +1,7 @@
 package conference.model.repository;
 
+import com.mysql.jdbc.MysqlDataTruncation;
+import conference.exceptions.ApplicationException;
 import conference.model.Log;
 import conference.model.entity.Conference;
 import conference.model.mapper.ConferenceMapper;
@@ -44,6 +46,8 @@ public class ConferenceRepository implements IConferenceRepository{
             ps.close();
         }catch (SQLIntegrityConstraintViolationException e) {
             throw new EntityExistsException("Tato konference již byla vytvořena.");
+        }catch (MysqlDataTruncation e){
+            throw new ApplicationException("Příliš dlouhá vstupní data");
         }catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

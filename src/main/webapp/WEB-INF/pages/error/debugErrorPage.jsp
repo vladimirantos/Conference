@@ -14,7 +14,7 @@
             padding-left: 20px;
             padding-top: 10px;
             width: 1300px;
-            height: 50px;
+            min-height: 50px;
             background-color: #328ADC;
             color: #fff;
         }
@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-<h1>${exception}</h1>
+<h1>${exception.getClass().toString()}</h1>
 
 <h2>Message: </h2>
 <p> <b>${exception.message}</b> </p>

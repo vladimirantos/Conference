@@ -14,7 +14,7 @@
             padding-left: 20px;
             padding-top: 10px;
             width: 1300px;
-            height: 50px;
+            min-height: 50px;
             background-color: #328ADC;
             color: #fff;
         }
