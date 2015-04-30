@@ -5,7 +5,7 @@ public enum SearchTypes {
 
     AUTHORS(2, "Autoři", "article_authors"),
 
-    CONFERENCE(3, "Konference", "conferences");
+    YEAR(3, "Rok", "conferences");
 
     private int id;
     private String name;

@@ -338,6 +338,14 @@ table .icontd img{
     margin: 0px;
 }
 
+.search-results .item a{
+    margin-right: 10px;
+}
+
+.search-results .item a:hover{
+    color: #007fec;
+}
+
 .search-results .item:first-of-type{
     margin-top: 10px;
 }
@@ -356,6 +364,3 @@ table .icontd img{
 .pagingBar a:hover{
     color: #007fec;
 }
-
-
-.highlight { background-color: yellow }

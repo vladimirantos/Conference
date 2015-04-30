@@ -1,9 +1,6 @@
 package conference.model;
 
-import conference.model.entity.Author;
-import conference.model.entity.DbArticle;
-import conference.model.entity.SearchAttributes;
-import conference.model.entity.SearchTypes;
+import conference.model.entity.*;
 import conference.model.repository.IArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +35,10 @@ public class SearchFactory {
                 AuthorsSearch authorsSearch = new AuthorsSearch(attributes.getSearchType(), attributes.getText());
                 authorsSearch.setArticleRepository(articleRepository);
                 return authorsSearch;
+            case YEAR:
+                ConferenceSearch conferenceSearch = new ConferenceSearch(attributes.getSearchType(), attributes.getText());
+                conferenceSearch.setArticleRepository(articleRepository);
+                return conferenceSearch;
         }
         throw new UnsupportedOperationException("Illegal type of search");
     }
@@ -93,13 +94,35 @@ class AuthorsSearch extends AbstractSearch{
         String[] parseAuthors = text.split(",");
 
         for(String s : parseAuthors){
-//            String[] authorsName = s.split(" ");
-//            Author author = new Author();
-//            author.setLastName(authorsName[0]);
-//            if(authorsName.length > 1) //Kontrola jestli bylo zadáno i jméno
-//                author.setName(authorsName[1]);
             authors.add(Author.fromString(s.trim()));
         }
         return authors;
+    }
+}
+
+class ConferenceSearch extends AbstractSearch{
+
+    public ConferenceSearch(SearchTypes type, String text) {
+        super(type, text);
+    }
+
+    @Override
+    public List<DbArticle> search() {
+        if(type == SearchTypes.YEAR) {
+            if (text.matches("(\\d{4})\\s?-\\s?(\\d{4})")) { //vyhledávání v rozmezí let
+                String[] years = text.split("-");
+                return searchByYear(Integer.parseInt(years[0].trim()), Integer.parseInt(years[1].trim()));
+            }
+            return searchByYear();
+        }
+        return new ArrayList<DbArticle>();
+    }
+
+    private List<DbArticle> searchByYear() {
+        return articleRepository.getArticlesByYear(Integer.parseInt(text));
+    }
+
+    private List<DbArticle> searchByYear(int year1, int year2) {
+        return articleRepository.getArticlesByYear(year1, year2);
     }
 }

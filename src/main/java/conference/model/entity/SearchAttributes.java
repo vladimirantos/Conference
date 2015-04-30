@@ -23,7 +23,7 @@ public class SearchAttributes {
             case 2:
                 return SearchTypes.AUTHORS;
             case 3:
-                return SearchTypes.CONFERENCE;
+                return SearchTypes.YEAR;
         }
         throw new UnsupportedOperationException("Illegal type of search");
     }

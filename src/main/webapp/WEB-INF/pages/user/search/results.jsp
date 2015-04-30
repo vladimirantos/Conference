@@ -5,9 +5,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <m:userLayout title="${title}">
-<script>
-    $('.item').highlight('channel');
-</script>
+
     <div class="search-results">
         <h2>Vyhledávání článků</h2>
         <form:form method="GET" commandName="searchAttributes" action="/search/results/">
@@ -25,7 +23,8 @@
                 ${fn:escapeXml(result.authors())}.
                     <span class="title">${result.name}. </span>Konference: ${fn:escapeXml(result.conferenceObj)}, <i>${result.conferenceObj.theme}</i>, ${result.conferenceObj.address},
                 ${result.conferenceObj.city}, ${result.conferenceObj.state}. ${result.conferenceObj.monthString()} ${result.conferenceObj.year}.
-                    <b><a href="/search/download/${result.conferenceObj.id}/${result.fileName}">Stáhnout PDF</a></b>
+                    <b><a href="/search/download/${result.conferenceObj.id}/${result.fileName}">Stáhnout PDF</a>
+                        <a href="/export/${result.id}">Exportovat</a></b>
                     <br><br>
                 <b>Abstrakt: </b><br>
                 ${result.abstrct}

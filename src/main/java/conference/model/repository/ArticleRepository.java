@@ -10,11 +10,14 @@ import conference.model.mapper.ArticleMapper;
 import conference.model.mapper.AuthorMapper;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.awt.print.Pageable;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -64,10 +67,10 @@ public class ArticleRepository implements IArticleRepository{
     public List<DbArticle> fullTextSearch(String word){
         String sql = "SELECT DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date, " +
                 "c.name as conference, c.theme, c.month, c.year, c.building, " +
-                "c.city, c.state, file_name, MATCH(a.name, a.abstract)AGAINST('" + word + "') AS score FROM articles as a " +
+                "c.city, c.state, file_name, MATCH(a.name, a.abstract)AGAINST(?) AS score FROM articles as a " +
                 "join conferences as c on c.id_conference = a.conference " +
-                "WHERE MATCH(a.name, a.abstract) AGAINST('" + word + "') ORDER BY score DESC";
-        return template.query(sql, new ArticleMapper().setArticleRepository(this));
+                "WHERE MATCH(a.name, a.abstract) AGAINST(?) ORDER BY score DESC";
+        return template.query(sql,new Object[]{word, word}, new ArticleMapper().setArticleRepository(this));
     }
 
     public List<DbArticle> fullTextSearch(String word, Pageable pageable){
@@ -75,6 +78,7 @@ public class ArticleRepository implements IArticleRepository{
     }
 
     public List<DbArticle> getArticlesByAuthors(List<Author> authors){
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(template.getDataSource());
         String sql = "select DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date," +
                 "c.name as conference, c.theme, c.month, c.year, c.building," +
                 " c.city, c.state, file_name " +
@@ -82,18 +86,62 @@ public class ArticleRepository implements IArticleRepository{
                 "join articles as a on a.id_article = au.id_article\n" +
                 "join conferences as c on c.id_conference = a.conference\n" +
                 "where ";
-        StringBuilder sb = new StringBuilder();
+
         int i = 0;
-        for(Author a : authors){ //vytvoření podmínky where
-            sb.append((a.getName() != null ? "au.name='"+a.getName()+"' and " : "")+ //jméno není povinné
-                    "au.last_name='"+a.getLastName()+"' ");
-            if(i != authors.size() - 1)
-                sb.append("or ");
-            i++;
+        List<String> names = new ArrayList<String>();
+        List<String> lastNames = new ArrayList<String>();
+        boolean hasName = false;
+        for(Author a : authors){
+            if(a.getName() != null){
+                names.add(a.getName());
+                hasName = true;
+            }
+            lastNames.add(a.getLastName());
         }
-        sql += sb.toString();
-        Log.message("SQL", sql, this);
-        return template.query(sql, new ArticleMapper().setArticleRepository(this));
+        sql += (hasName ? "au.name IN(:names) and " : " ") +"au.last_name IN(:lastNames) ORDER BY title ASC, insertion_date DESC";
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        if(hasName)
+            parameters.addValue("names", names);
+        parameters.addValue("lastNames", lastNames);
+        return namedParameterJdbcTemplate.query(sql, parameters, new ArticleMapper().setArticleRepository(this));
+    }
+
+    /**
+     * Vyhledá články napsané v zadaném roce.
+     */
+    @Override
+    public List<DbArticle> getArticlesByYear(int year) {
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(template.getDataSource());
+        String sql = "select DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date," +
+                "c.name as conference, c.theme, c.month, c.year, c.building," +
+                " c.city, c.state, file_name " +
+                "from article_authors as au " +
+                "join articles as a on a.id_article = au.id_article " +
+                "join conferences as c on c.id_conference = a.conference " +
+                "where c.year=(:year) ORDER BY title ASC, insertion_date DESC";
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("year", year);
+        return namedParameterJdbcTemplate.query(sql, parameters, new ArticleMapper().setArticleRepository(this));
+    }
+
+    /**
+     * Vyhledává články které jsou v rozmezí year1 a year2.
+     */
+    @Override
+    public List<DbArticle> getArticlesByYear(int year1, int year2) {
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(template.getDataSource());
+        String sql = "select DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date," +
+                "c.name as conference, c.theme, c.month, c.year, c.building," +
+                " c.city, c.state, file_name " +
+                "from article_authors as au " +
+                "join articles as a on a.id_article = au.id_article " +
+                "join conferences as c on c.id_conference = a.conference " +
+                "where c.year BETWEEN (:year1) and (:year2) ORDER BY title, year ASC";
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("year1", year1);
+        parameters.addValue("year2", year2);
+        return namedParameterJdbcTemplate.query(sql, parameters, new ArticleMapper().setArticleRepository(this));
     }
 
     public List<Author> getAuthors(long idArticle) {
