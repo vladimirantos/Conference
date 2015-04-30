@@ -1,58 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - publications@localhost" uuid="fbcadd77-69b3-4c04-9727-31bef74e3562">
-    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+  <data-source name="MySQL - publications@localhost" uuid="893cee66-043f-475b-8ddd-d0180c1bc90f">
+    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="publications"/>
-    <table name="articles" schema="" catalog="publications" type="TABLE">
+    <table name="article_authors" schema="" catalog="publications" type="TABLE">
       <column name="id_article" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="conference" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="name" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
-      <column name="abstract" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
-      <column name="number_pages" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="insertion_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
-      <primary-key name="PRIMARY" columns="id_article"/>
-      <index name="conference" unique="false" columns="conference"/>
-    </table>
-    <table name="authors" schema="" catalog="publications" type="TABLE">
-      <column name="id_author" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <column name="institut" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="university" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="city" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
-      <column name="state" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id_author"/>
+      <column name="city" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id_article,name,last_name"/>
+      <foreign-key name="fk_article" columns="id_article" ref-table="articles" ref-schema="" ref-catalog="publications" ref-columns="id_article" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="authors" unique="false" columns="name,last_name"/>
     </table>
-    <table name="authors_articles" schema="" catalog="publications" type="TABLE">
-      <column name="author" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
-      <column name="article" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
-      <primary-key name="PRIMARY" columns="author,article"/>
-      <index name="article" unique="false" columns="article"/>
+    <table name="articles" schema="" catalog="publications" type="TABLE">
+      <column name="id_article" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="conference" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="name" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="abstract" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="number_pages" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="file_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="insertion_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id_article,conference"/>
+      <foreign-key name="fk_conference" columns="conference" ref-table="conferences" ref-schema="" ref-catalog="publications" ref-columns="id_conference" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk_article" table="article_authors" schema="" catalog="publications" columns="id_article"/>
+      <index name="uk_name" unique="true" columns="conference,name"/>
+      <index name="search_articles" unique="false" columns="name,abstract"/>
+    </table>
+    <table name="conference_articles" schema="" catalog="publications" type="VIEW">
+      <column name="conference" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="article" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="author" sqlType="VARCHAR" precision="61" scale="0" nullable="true" jdbcType="12"/>
     </table>
     <table name="conferences" schema="" catalog="publications" type="TABLE">
       <column name="id_conference" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
-      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
-      <column name="theme" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="theme" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
       <column name="month" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="year" sqlType="YEAR" precision="0" scale="0" nullable="false" jdbcType="91"/>
-      <column name="building" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="building" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
       <column name="city" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <column name="state" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id_conference"/>
-      <index name="name" unique="true" columns="name,month,year"/>
+      <exported-key name="fk_conference" table="articles" schema="" catalog="publications" columns="conference"/>
+      <index name="uk_name" unique="true" columns="name,month,year"/>
+      <index name="conference" unique="false" columns="name,theme,building,city,state"/>
+    </table>
+    <table name="export_patterns" schema="" catalog="publications" type="TABLE">
+      <column name="id_pattern" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pattern" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id_pattern"/>
+      <index name="uk_name" unique="true" columns="name"/>
     </table>
     <table name="users" schema="" catalog="publications" type="TABLE">
-      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="id_user" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
-      <column name="email" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
-      <column name="role" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
       <column name="registration_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id_user"/>
     </table>
   </data-source>
 </component>

@@ -4,18 +4,18 @@ package conference.model.entity;
  * Created by Vladimír on 30. 4. 2015.
  */
 public class Export {
-    int id_export;
+    int idPattern;
 
     String name;
 
     String pattern;
 
-    public int getId_export() {
-        return id_export;
+    public int getIdPattern() {
+        return idPattern;
     }
 
-    public void setId_export(int id_export) {
-        this.id_export = id_export;
+    public void setIdPattern(int idPattern) {
+        this.idPattern = idPattern;
     }
 
     public String getName() {
@@ -32,5 +32,10 @@ public class Export {
 
     public void setPattern(String pattern) {
         this.pattern = pattern;
+    }
+
+    @Override
+    public String toString() {
+        return pattern;
     }
 }

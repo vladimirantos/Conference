@@ -235,6 +235,10 @@ a:visited{
     text-align: center;
 }
 
+.content li{
+    list-style-type: none;
+}
+
 table .icontd img{
     margin-right: 10px;
 }
