@@ -4,7 +4,9 @@ package conference.model.entity;
  * Created by Vladimír on 30. 4. 2015.
  */
 public class Export {
-    int idPattern;
+    int idPattern = 0;
+
+    int idArticle;
 
     String name;
 
@@ -19,7 +21,7 @@ public class Export {
     }
 
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public void setName(String name) {
@@ -32,6 +34,14 @@ public class Export {
 
     public void setPattern(String pattern) {
         this.pattern = pattern;
+    }
+
+    public int getArticle() {
+        return idArticle;
+    }
+
+    public void setArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
 
     @Override

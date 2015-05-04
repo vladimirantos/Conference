@@ -21,8 +21,10 @@ public class ExportController extends UserController{
 
     @RequestMapping(value = {"/export/{idArticle}"}, method = RequestMethod.GET)
     public ModelAndView index(@PathVariable("idArticle") String idArticle){
+        Export export = new Export();
+        export.setArticle(Integer.parseInt(idArticle));
         return title("Export článku")
-                .addObject("export", new Export())
+                .addObject("export", export)
                 .addObject("patterns", exportManager.getPatterns())
                 .addObject("id", idArticle)
                 .getTemplate();
@@ -34,19 +36,31 @@ public class ExportController extends UserController{
     @RequestMapping(value = {"/export/{idArticle}"}, method = RequestMethod.POST)
     public ModelAndView onSubmit(Export export, BindingResult result, RedirectAttributes redirectAttributes){
         title("Export článku").addObject("export", export);
+
+        if(export.getArticle() != 0){ //exportování článku
+            log("XXX", String.valueOf(export.getArticle()));
+            return redirect("this");
+        }
+
+        //uložení formátu do databáze
         try{
             exportManager.save(export);
             flashMessage("Úspěšně uloženo", FlashMessage.OK);
-            redirect("this");
-        }catch (RuntimeException ex){
-            flashMessage(ex.getMessage(), FlashMessage.ERROR);
+            return redirect("this");
+        }catch(RuntimeException ex){
+            flashMessage(ex.getMessage());
         }
         return getTemplate();
     }
 
-    @RequestMapping(value = {"/export/getfile/{idArticle}"}, method = RequestMethod.POST)
-    public ModelAndView getFile(Export export, @PathVariable("idArticle") String idArticle, BindingResult result, RedirectAttributes redirectAttributes){
-        log("format", String.valueOf(export.getIdPattern()));
-        return getTemplate();
+    @RequestMapping(value="/export/file", method=RequestMethod.POST)
+    public ModelAndView getFile(Export export, BindingResult result, RedirectAttributes redirectAttributes){
+        addObject("export", export);
+        if(export.getIdPattern() == 0){
+            flashMessage("Nebyl vybrán formát", FlashMessage.ERROR);
+            return redirect("/search/export/"+export.getArticle());
+        }
+
+        return redirect("/search/export/"+export.getArticle());
     }
 }

@@ -59,7 +59,7 @@ public class ExportPatternRepository implements IExportRepository {
     }
 
     @Override
-    public List<Export> getPatternById() {
+    public Export getPatternById(int id) {
         return null;
     }
 }

@@ -24,14 +24,20 @@
         </form:form>
 
         <h2>Exportovat</h2>
-        <c:set var="adminurl" value="/search/export/getfile/${id}+?account=admin" />
-        <c:set var="userurl" value="/search/export/getfile/${id}" />
+        <c:set var="adminurl" value="/search/export/file?account=admin"/>
+        <c:set var="userurl" value="/search/export/file"/>
         <c:choose>
             <c:when test="${patterns.size() > 0}">
                 <form:form method="POST" commandName="export" action="${param.account == 'admin' ? adminurl : userurl}">
                     <b>Vyber formát výstupu: </b>
                     <ul>
-                        <form:radiobuttons path="idPattern" items="${patterns}" element="li"/>
+                        <c:forEach items="${patterns}" var="pattern" varStatus="status">
+                            <li>
+                                <form:radiobutton path="idPattern" value="${pattern.idPattern}"/>
+                                <label for="idPattern${status.index+1}">${pattern.name}: ${pattern.pattern}</label>
+                            </li>
+                        </c:forEach>
+                        <form:hidden path="article" />
                     </ul>
                     <input type="submit" value="Export">
                 </form:form>
@@ -40,6 +46,5 @@
                 Nebyl nalezen žádný formát. Zkus nejprve vytvořit.
             </c:otherwise>
         </c:choose>
-
     </div>
 </m:userLayout>

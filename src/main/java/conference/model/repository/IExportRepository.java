@@ -12,5 +12,5 @@ public interface IExportRepository {
 
     List<Export> selectPatterns();
 
-    List<Export> getPatternById();
+    Export getPatternById(int id);
 }

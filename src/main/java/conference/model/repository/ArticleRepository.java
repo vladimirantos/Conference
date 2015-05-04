@@ -144,6 +144,21 @@ public class ArticleRepository implements IArticleRepository{
         return namedParameterJdbcTemplate.query(sql, parameters, new ArticleMapper().setArticleRepository(this));
     }
 
+    @Override
+    public DbArticle getArticleById(int id) {
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(template.getDataSource());
+        String sql = "select DISTINCT a.id_article, a.conference as id_conference, a.name as title, abstract, number_pages, insertion_date," +
+                "c.name as conference, c.theme, c.month, c.year, c.building," +
+                " c.city, c.state, file_name " +
+                "from article_authors as au " +
+                "join articles as a on a.id_article = au.id_article " +
+                "join conferences as c on c.id_conference = a.conference " +
+                "where a.id_article=(:id)";
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("id", id);
+        return namedParameterJdbcTemplate.query(sql, parameters, new ArticleMapper().setArticleRepository(this)).get(0);
+    }
+
     public List<Author> getAuthors(long idArticle) {
         String sql = "SELECT id_article, name, last_name, institut, university, city, state FROM article_authors WHERE id_article = ?";
         return template.query(sql, new Object[]{idArticle}, new AuthorMapper());

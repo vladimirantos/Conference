@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<conference>
+    <article>
+        <title>Feature Normalization Using Smoothed Mixture Transformations</title>
+        <authors>
+            <author>Patrick Kenny</author>
+            <author>Vishwa Gupta</author>
+            <author>G. Boulianne</author>
+            <author>Pierre Ouellet</author>
+            <author>Pierre Dumouchel</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Feature Enhancement for Robust ASR</conferenceName>
+        <abstract>We propose a method for estimating the parameters of SPLICE-like transformations from individual
+            utterances so that this typeof transformation can be used to normalize acoustic feature vec-tors for speech
+            recognition on an utterance-by-utterance basis in asimilar manner to cepstral mean normalization. We report
+            resultson an in-house French language multi-speaker database collectedwhile deploying an automatic
+            closed-captioning system for livebroadcast news. An unusual feature of this database is that thereare very
+            large amounts of training data for the individual speak-ers (typically several hours) so that it is very
+            difficult to improveon multi-speaker modeling by using standard methods of speakeradaptation. We found that
+            the proposed method of feature normal-ization is capable of achieving a 6% relative improvement overcepstral
+            mean normalization on this task.Index Terms: speech recognition, SPLICE, eigenvoice MAP
+        </abstract>
+        <file>IS061026_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Single Channel Speech Enhancement by Frequency Domain Constrained Optimization and Temporal Masking
+        </title>
+        <authors>
+            <author>Wen Jin</author>
+            <author>Michael Scordilis</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Speech Enhancement II</conferenceName>
+        <abstract>A speech enhancement algorithm is proposed that exploits themasking properties of the human auditory
+            system. The enhance-ment is formulated as a frequency domain constrained optimiza-tion problem. The noise
+            components of the noisy speech are sup-pressed by a gain function subject to the constraint that both
+            thesignal distortion and residual noise should fall below the mask-ing thresholds. Temporal as well as
+            simultaneous masking ef-fects are incorporated into the estimation of masking thresholds.The enhancement
+            algorithm was tested with speech corrupted bywhite Gaussian and multitalker babble noise, respectively.
+            Itsperformance was evaluated by ITU PESQ scores and segmentalSNR. Experimental results indicate that the
+            proposed gain func-tion performs slightly but consistently better than a former percep-tually motivated
+            enhancement algorithm. Greater improvement isachieved by incorporating the temporal masking effects.Index
+            Terms: speech enhancement, psychoacoustical model, tem-poral masking.
+        </abstract>
+        <file>IS061027_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Pitch Resynchronization While Recovering from a Late Frame in a Predictive Speech Decoder</title>
+        <authors>
+            <author>Kyle D. Anderson</author>
+            <author>Philippe Gournay</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Speech Coding</conferenceName>
+        <abstract>The concealment procedure used by CELP speech decoders to regenerate lost frames introduces an error
+            that propagates into the following frames. Within the context of voice transmission over packet networks,
+            some packets arrive too late to be decoded and must also be concealed. Once they arrive however, those
+            packets can be used to update the internal state of the decoder, which stops error propagation. Yet, care
+            must be taken to ensure a smooth transition between the concealed frame and the following “updated” frame
+            computed with properly updated internal states. During voiced or quasi-periodic segments, the pitch phase
+            error that is generally introduced by the concealment procedure makes it difficult and detrimental to
+            quality to use the traditional fade-in, fade-out approach. This paper presents a method to handle that pitch
+            phase error. Specifically, the transition is done in such a way that the natural pitch periodicity of the
+            speech signal is not broken. Index Terms: speech coding, robustness, late packets
+        </abstract>
+        <file>IS061029_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Automatic Recognition of Speakers' Age and Gender on the Basis of Empirical Studies</title>
+        <authors>
+            <author>Christian Muller</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Speaker Characterization and Recognition IV</conferenceName>
+        <abstract>This paper describes a system that exploits the paralinguistic in-formation in the speech to estimate
+            the speakers’ age and gender.Compared with previously published work, the so called AGEN-DER approach
+            involves finer grained speaker classes and achievesa significantly higher classification accuracy. The
+            introduction en-compasses various application examples representing the actualAGENDER project context. Then
+            hypotheses, method and a rep-resentative selection of results from extensive corpus analyses arepresented,
+            that build the empirical basis for the machine learning.Finally, the AGENDER approach on speaker
+            classification is out-lined, involving the comparison of different classification methodsas well as
+            evaluation results. The paper finishes with an outlookon extensions that are scheduled for the next project
+            phase.Index Terms: speaker classification, age and gender recognition,machine learning.
+        </abstract>
+        <file>IS061031_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Incremental Learning of MAP Context-Dependent Edit Operations for Spoken Phone Number Recognition in an
+            Embedded Platform
+        </title>
+        <authors>
+            <author>Hahn Koo</author>
+            <author>Yan Ming Cheng</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : ASR Other II</conferenceName>
+        <abstract>Error-corrective post-processing (ECPP) has great potential to reduce speech recognition errors beyond
+            that obtained by speech model improvement. ECPP approaches aim to learn error-corrective rules to directly
+            reduce speech recognition errors. This paper presents our investigation into one such approach, incremental
+            learning of maximum a posteriori (MAP) context-dependent edit operations. Limiting our dataset to spoken
+            telephone number recognition output, we have evaluated this approach in an automotive environment using an
+            embedded speech recognizer in a mobile device. We have found that a reduction of approximately 44~49% in
+            speech recognition string errors can be achieved after learning. Index Terms: error correction,
+            post-processing, speech recognition
+        </abstract>
+        <file>IS061032_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>The Role of Positional Probability in the Segmentation of Cantonese Speech</title>
+        <authors>
+            <author>Michael C.W. Yip</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Speech Perception I</conferenceName>
+        <abstract>The present paper examines the question of whether native Cantonese listeners make use of
+            probabilistic phonotactics information of words in the segmentation process of Cantonese continuous speech.
+            Because some sounds appear more frequently at the beginning or ending of Cantonese syllables than the
+            others, these kinds of probabilistic information of syllables may be likely to cue the locations of possible
+            syllable boundaries in Cantonese continuous speech. A syllable-spotting experiment was conducted and the
+            results indicated that native Cantonese listeners indeed made use of the positional probabilities of a
+            syllable's onset but not for the case of a syllable's final in the segmentation process. Along with my
+            previous study [1], I argue that probabilistic phonotactics is one useful source of information in Cantonese
+            speech segmentation. Index Terms: speech segmentation; probabilistic phonotactics; Cantonese speech
+        </abstract>
+        <file>IS061034_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Improved Hybrid Microphone Array Post-Filter by Integrating a Robust Speech Absence Probability Estimator
+            for Speech Enhancement
+        </title>
+        <authors>
+            <author>Junfeng Li</author>
+            <author>Masato Akagi</author>
+            <author>Yoiti Suzuki</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Multichannel Speech Enhancement/Speech Perception</conferenceName>
+        <abstract>To improve the performance of multi-channel speech enhance-ment algorithms, we previously proposed a
+            hybrid Wiener post-filter for microphone arrays under the assumption of a diffusenoise field [4]. In this
+            paper, considering the speech presenceuncertainty, we further improve the hybrid post-filter presentedbefore
+            by integrating a novel robust estimator for the a priorispeech absence probability, which makes full use of
+            the cor-relation characteristics of the noises on different microphonepairs and hence offers the much more
+            accurate speech absenceprobability estimates. The effectiveness of this improved hy-brid post-filter was
+            finally confirmed by the experiments usingmulti-channel recordings in various car environments.Index Terms:
+            Speech enhancement, Microphone array, Post-filtering, Speech absence probability.
+        </abstract>
+        <file>IS061035_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Conversational Quality Estimation Model for Wideband IP-Telephony Services</title>
+        <authors>
+            <author>Hitoshi Aoki</author>
+            <author>Atsuko Kurashima</author>
+            <author>Akira Takahashi</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Corpora, Annotation, and Assessment Metrics II</conferenceName>
+        <abstract>As broadband and high-speed IP networks spread, IP-telephonyservices have become a popular speech
+            communication applica-tion over IP networks. Recently, the speech quality of IP-telephonyservices has become
+            close to that of conventional PSTN services.To provide better speech quality to users, speech
+            communicationwith wider bandwidth (e.g., 7 kHz) is one of the most promisingapplications. To ensure
+            desirable quality, we should design thequality before services start and manage it while they are
+            beingprovided. To do this, an effective means for estimating users’ per-ceptions of speech quality is
+            indispensable. This paper describesa model for estimating the conversational quality of wideband
+            IP-telephony services from physical characteristics of terminals andnetworks. The proposed model takes into
+            account the quality en-hancement effect achieved by widening speech bandwidth and hasthe advantage that it
+            can evaluate the quality of both widebandand telephone-band speech on the same scale. Based on subjec-tive
+            conversational quality evaluation experiments, we show thatthe proposed model can accurately estimate the
+            subjective qualityfor wideband speech as well as for telephone-band speech.Index Terms: wideband speech,
+            quality estimation, quality evalu-ation, conversational quality, IP-telephony
+        </abstract>
+        <file>IS061036_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>From Pre-Recorded Prompts to Corporate Voices: On the Migration of Interactive Voice Response
+            Applications
+        </title>
+        <authors>
+            <author>V. Fischer</author>
+            <author>S. Kunzmann</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : TTS II</conferenceName>
+        <abstract>This paper describes our efforts towards the creation of cor-porate synthetic voices from low quality
+            speech data, asit can typically be found on many Interactive Voice Re-sponse (IVR) units. In doing so, we
+            first touch on severalnormalization techniques that aim on a better support of ahighly automated voice
+            construction process. Subsequently,we describe methods for the creation of enriched corpo-rate voices which
+            integrate speech recordings from differentspeakers in order to overcome problems arising from limiteddomain
+            training data.Experiments are described which demonstrate the feasi-bility of the approach by comparing it
+            to a less flexible so-lution that uses pre-recorded prompts in combination witha large footprint standard
+            concatenative synthesizer. Re-sults show that the enriched voices clearly outperform thosevoices build
+            solely from IVR data, while achieving almostthe same overall rating as the pre-recorded prompts
+            solu-tion.Index Terms: speech synthesis, IVR migration, corporatevoices, limited domain synthesis, pooled
+            speaker synthesis.
+        </abstract>
+        <file>IS061042_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Tracking of Involuntary Formant Frequency Variations and Application to Parkinsonian Speech</title>
+        <authors>
+            <author>Laurence Cnockaert</author>
+            <author>Jean Schoentgen</author>
+            <author>Pascal Auzou</author>
+            <author>Canan Ozsancak</author>
+            <author>Francis Grenez</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Formant Estimation</conferenceName>
+        <abstract>The objective of this paper is to present a formant frequency es-timation method, developed with a
+            view to track small variationsdue to involuntary vocal tract movement. The formant frequencyestimation is
+            based on the instantaneous frequencies obtained bymeans of a complex wavelet transform and is synchronised
+            withthe glottal cycle. Results for synthetic speech signals show theprecision of the formant frequency
+            estimation method. Results arepresented for speech signals from both normophonic speakers andspeakers with
+            Parkinson’s disease.Index Terms: formant tracking, continuous wavelet transform,disordered speech.
+        </abstract>
+        <file>IS061043_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Design and Performance Analysis of a Factoid Question Answering System for Spontaneous Speech
+            Transcriptions
+        </title>
+        <authors>
+            <author>Mihai Surdeanu</author>
+            <author>David Dominguez-Sal</author>
+            <author>Pere R. Comas</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Multimodal, Translation and Information Retrieval</conferenceName>
+        <abstract>This paper introduces a QA designed from scratch to handlespeech transcriptions. The system’s strength
+            is achieved by analyz-ing the speech transcriptions with a mix of IR-oriented methodolo-gies and a small
+            number of robust NLP components. We evaluatethe system on transcriptions of spontaneous speech from
+            several1-hour-long seminars and presentations and show that the systemobtains encouraging performance.Index
+            Terms: question answering, natural language processing
+        </abstract>
+        <file>IS061046_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Six Approaches to Limited Domain Concatenative Speech Synthesis</title>
+        <authors>
+            <author>Robert J. Utama</author>
+            <author>Ann K. Syrdal</author>
+            <author>Alistair Conkie</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : TTS II</conferenceName>
+        <abstract>This paper (this work constitute Robert Utama’s masterthesis in the Electrical and Computer
+            Engineering program inRutgers University) describes the creation of 6 limited-domainText-to-Speech (TTS)
+            systems that are constrained to digitstring and natural number domains (cardinal numbers only).Unit
+            selection-based concatenative TTS systems were imple-mented in MATLAB to fulfill this goal. We evaluate and
+            dis-cuss various factors that can influence the naturalness or overallquality of the synthesized voice. Some
+            of the factors studiedare the length and type of the synthesis unit and the extent ofco-articulation
+            represented in the recorded speech database. Inthe end, we show that it is possible to create a high quality
+            lim-ited domain TTS system either with maximal or with carefullycontrolled minimal effects of
+            co-articulation.Index Terms: speech synthesis, unit selection, unit length, sub-word, word, comparison.
+        </abstract>
+        <file>IS061047_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Linguistic Tuple Segmentation in Ngram-Based Statistical Machine Translation</title>
+        <authors>
+            <author>Adria de Gispert</author>
+            <author>Jose B. Marino</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Multimodal, Translation and Information Retrieval</conferenceName>
+        <abstract>Ngram-based Statistical Machine Translation relies on a standardNgram language model of tuples to
+            estimate the translation pro-cess. In training, this translation model requires a segmentation ofeach
+            parallel sentence, which involves taking a hard decision ontuple segmentation when a word is not linked
+            during word align-ment. This is especially critical when this word appears in thetarget language, as this
+            hard decision is compulsory.In this paper we present a thorough study of this situation,comparing for the
+            first time each of the proposed techniques intwo independent tasks, namely English–Spanish European
+            Parlia-ment Proceedings large-vocabulary task and Arabic–English BasicTravel Expressions small-data task. In
+            the face of this comparison,we present a novel segmentation technique which incorporates lin-guistic
+            information. Results obtained in both tasks outperform allprevious techniques.Index Terms: statistical
+            machine translation, tuple segmentation,n-gram-based SMT, linguistic information
+        </abstract>
+        <file>IS061049_NoRestriction.pdf</file>
+    </article>
+    <article>
+        <title>Automatic Initial/Final Generation for Dialectal Chinese Speech Recognition</title>
+        <authors>
+            <author>Linquan Liu</author>
+            <author>Thomas Fang Zheng</author>
+            <author>Wenhu Wu</author>
+        </authors>
+        <conferenceName>Interspeech 2006 : Multilingual and Multi-accent Processing</conferenceName>
+        <abstract>Phonetic differences always exist between any Chinese dialect and standard Chinese (Putonghua). In
+            this paper, a method, named automatic dialect-specific Initial/Final (IF) generation, is proposed to deal
+            with the issue of phonemic difference which can automatically produce the dialect-specific units based on
+            model distance measure. A dialect-specific decision tree regrowing method is also proposed to cope with the
+            tri-IF expansion due to the introduction of dialect-specific IFs (DIFs). In combination with a certain
+            adaptation technique, the proposed methods can achieve a syllable error rate (SER) reduction of 18.5% for
+            Shanghai-accented Chinese compared with the Putonghua-based baseline while the use of the DIF set only can
+            lead to an SER reduction of 5.5%. Index Terms: speech recognition, dialectal Chinese speech recognition,
+            phone set generation, acoustic distance measure
+        </abstract>
+        <file>IS061051_NoRestriction.pdf</file>
+    </article>
+</conference>

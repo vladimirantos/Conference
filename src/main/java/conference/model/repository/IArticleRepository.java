@@ -1,5 +1,6 @@
 package conference.model.repository;
 
+import conference.model.entity.Article;
 import conference.model.entity.Author;
 import conference.model.entity.Conference;
 import conference.model.entity.DbArticle;
@@ -21,6 +22,8 @@ public interface IArticleRepository extends IRepository{
     List<DbArticle> getArticlesByYear(int year);
 
     List<DbArticle> getArticlesByYear(int year1, int year2);
+
+    DbArticle getArticleById(int id);
 
     List<Author> getAuthors(long idArticle);
 }
