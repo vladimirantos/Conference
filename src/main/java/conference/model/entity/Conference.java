@@ -16,6 +16,7 @@ public class Conference {
     private String state;
     private int month;
     private int year;
+    private String isbn;
 
     public Long getId(){
         if(id == null){
@@ -91,6 +92,14 @@ public class Conference {
 
     public int getCountArticles(){
         return FileStorage.countFiles(String.valueOf(id));
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     @Override

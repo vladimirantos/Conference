@@ -12,7 +12,7 @@
 //import java.util.regex.Matcher;
 //import java.util.regex.Pattern;
 //
-//class Tokens{
+//class Tokenks{
 //    public static final String name = "jmeno";
 //    public static final String lastName = "prijmeni";
 //    public static final String title = "nadpis";
@@ -30,7 +30,7 @@
 //    }
 //}
 //
-//class Parser{
+//class Parkser{
 //
 //    String pattern;
 //
