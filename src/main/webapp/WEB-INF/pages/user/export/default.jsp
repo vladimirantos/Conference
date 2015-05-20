@@ -46,5 +46,9 @@
                 Nebyl nalezen žádný formát. Zkus nejprve vytvořit.
             </c:otherwise>
         </c:choose>
+        <c:if test="${result != null}">
+            <h2>Výsledek</h2>
+            <p>${result}</p>
+        </c:if>
     </div>
 </m:userLayout>

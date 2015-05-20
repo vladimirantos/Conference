@@ -3,9 +3,12 @@ package conference.model.repository;
 import com.mysql.jdbc.MysqlDataTruncation;
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import conference.exceptions.ApplicationException;
+import conference.model.Log;
 import conference.model.entity.Export;
 import conference.model.mapper.ExportPatternMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -60,6 +63,8 @@ public class ExportPatternRepository implements IExportRepository {
 
     @Override
     public Export getPatternById(int id) {
-        return null;
+        Log.message("ida", String.valueOf(id), this);
+        String sql = "SELECT id_pattern, name, pattern FROM export_patterns WHERE id_pattern = ?";
+        return template.queryForObject(sql, new Object[]{id}, new ExportPatternMapper());
     }
 }

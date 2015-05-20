@@ -2,7 +2,10 @@ package conference.controller.user;
 
 import com.sun.javafx.sg.prism.NGShape;
 import conference.configuration.FlashMessage;
+import conference.model.ArticleManager;
+import conference.model.ArticleParser;
 import conference.model.ExportManager;
+import conference.model.entity.DbArticle;
 import conference.model.entity.Export;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,9 @@ public class ExportController extends UserController{
     @Autowired
     ExportManager exportManager;
 
+    @Autowired
+    ArticleManager articleManager;
+
     @RequestMapping(value = {"/export/{idArticle}"}, method = RequestMethod.GET)
     public ModelAndView index(@PathVariable("idArticle") String idArticle){
         Export export = new Export();
@@ -34,11 +40,12 @@ public class ExportController extends UserController{
      * Uloží formát do databáze.
      */
     @RequestMapping(value = {"/export/{idArticle}"}, method = RequestMethod.POST)
-    public ModelAndView onSubmit(Export export, BindingResult result, RedirectAttributes redirectAttributes){
-        title("Export článku").addObject("export", export);
+    public ModelAndView onSubmit(Export export, BindingResult result, RedirectAttributes redirectAttributes) {
+        title("Export článku").addObject("export", export).addObject("result", null);
 
         if(export.getArticle() != 0){ //exportování článku
             log("XXX", String.valueOf(export.getArticle()));
+
             return redirect("this");
         }
 
@@ -60,6 +67,10 @@ public class ExportController extends UserController{
             flashMessage("Nebyl vybrán formát", FlashMessage.ERROR);
             return redirect("/search/export/"+export.getArticle());
         }
+        String pattern = exportManager.getPatternById(export.getIdPattern()).getPattern();
+        DbArticle article = articleManager.getArticleById(export.getArticle());
+        ArticleParser articleParser = new ArticleParser(pattern, article);
+        addObject("result", articleParser.replace());
 
         return redirect("/search/export/"+export.getArticle());
     }

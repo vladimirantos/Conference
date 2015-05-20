@@ -24,7 +24,7 @@ public class Main {
         //Parser p = new Parser("[autor -f={prijmeni -d={, } -b}, {jmeno -b -u -d={, }}]: [nadpis -i -u -fl] - [konference -fu], [datum -df={Y M}]", getArticle());
         //System.out.println(p.replace());
 
-        ArticleParser p = new ArticleParser("[autor -f={jmeno -1 -l} {prijmeni -u -d={, }}]: [nadpis -u], [konference -fl]: [adresa] [mesto -fu], [stat]. [[datum -df={Y.M}]] ", getArticle());
+        ArticleParser p = new ArticleParser("[autor -f={jmeno -1 -l} {prijmeni -u -d={, }}]: [nadpis -u], [konference -fl]: [adresa] [mesto -fu], [stat]. [[datum -df={Y.M}]].", getArticle());
         //ArticleParser p = new ArticleParser("[konference -fl] - [datum -f={, }]", getArticle());
         System.out.println(p.replace());
 

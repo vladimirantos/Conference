@@ -57,6 +57,10 @@ public class ArticleManager{
         }
     }
 
+    public DbArticle getArticleById(int id){
+        return articleRepository.getArticleById(id);
+    }
+
     private void insertToDatabase(String fileName){
         ArticleXmlParser articleXmlParser = new ArticleXmlParser(FileStorage.getPath(article.getConference()) + fileName, article.getConference());
         try {

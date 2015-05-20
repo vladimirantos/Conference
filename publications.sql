@@ -7,6 +7,7 @@ create table conferences(
   building VARCHAR(30) not null,
   city VARCHAR(30) NOT NULL,
   state VARCHAR(30) NOT NULL,
+  isbn
   CONSTRAINT pk_conference PRIMARY KEY(id_conference),
   CONSTRAINT uk_name UNIQUE KEY (name, month, year)
 );

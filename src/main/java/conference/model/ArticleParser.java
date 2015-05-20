@@ -142,10 +142,7 @@ public class ArticleParser {
         String g1 = format.substring(0,1);
         String g2 = format.substring(format.length() - 1, format.length());
         String m = format.substring(1, format.length() - 1); //výpln
-
-
         Calendar cal = Calendar.getInstance();
-
         String month = new String();
         String year = new String();
         String[] months = new String[]{"leden", "únor", "březen", "duben", "květen", "červen", "červenec", "srpen", "září", "říjen", "listopad", "prosinec"};
